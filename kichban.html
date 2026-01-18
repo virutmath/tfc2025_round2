@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Kịch Bản Video Thuyết Trình - Cambridge Exam Prep App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+            transition: background 0.3s ease;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .section {
+            background: #f9f9f9;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-script {
+            background: #fff9e6;
+            border-left: 5px solid #ffc107;
+        }
+
+        .section-camera {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+
+        .dialogue {
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 16px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dialogue-header {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 15px;
+            font-size: 1.3em;
+            color: #667eea;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .badge-time {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .badge-person {
+            background: #4caf50;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 KỊCH BẢN VIDEO THUYẾT TRÌNH (3-5 phút)</h1>
+            <p><strong>Giai đoạn 2: Vòng Sơ Khảo - Thông Điệp Lan Tỏa</strong></p>
+        </div>
+
+        <div class="content">
+            <!-- THÔNG TIN CHUNG -->
+            <h2><span class="emoji">📋</span>THÔNG TIN CHUNG</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thông tin</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chủ đề</strong></td>
+                        <td>Sáng tạo công nghệ vì cộng đồng</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tên dự án</strong></td>
+                        <td>Cambridge Exam Prep App</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời lượng</strong></td>
+                        <td>3 phút 50 giây (khoảng 4 phút)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Số thành viên</strong></td>
+                        <td>5 người (1 nam - nhóm trưởng, 4 nữ)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thiết bị quay</strong></td>
+                        <td>Điện thoại hoặc máy quay</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ngôn ngữ lời thoại</strong></td>
+                        <td>Tiếng Anh (A2-B1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ghi chú & hướng dẫn</strong></td>
+                        <td>Tiếng Việt</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- DANH SÁCH NHÂN VẬT -->
+            <h2><span class="emoji">👥</span>DANH SÁCH NHÂN VẬT</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vai</th>
+                        <th>Tên</th>
+                        <th>Nội dung chính</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nhóm trưởng (Nam)</strong></td>
+                        <td>A</td>
+                        <td>Mở đầu (0:00-0:40) + Kết thúc (3:20-3:50)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bạn nữ #1</strong></td>
+                        <td>B</td>
+                        <td>Phần vấn đề (0:40-1:25)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bạn nữ #2</strong></td>
+                        <td>C</td>
+                        <td>Phần giải pháp - Phần 1 (1:25-1:55)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bạn nữ #3</strong></td>
+                        <td>D</td>
+                        <td>Phần giải pháp - Phần 2 (1:55-2:45)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bạn nữ #4</strong></td>
+                        <td>E</td>
+                        <td>Phần lợi ích (2:45-3:20) + Kết thúc (3:20-3:50)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- HƯỚNG DẪN SETTING -->
+            <h2><span class="emoji">📹</span>HƯỚNG DẪN SETTING VÀ THIẾT BỊ</h2>
+            
+            <div class="section">
+                <h3>Vị trí quay:</h3>
+                <ul>
+                    <li><strong>Background:</strong> Phòng học hoặc khu vực gọn gàng với ánh sáng tự nhiên tốt (cửa sổ hướng về phía trước)</li>
+                    <li><strong>Đạo cụ:</strong> Laptop/tablet (để demo ứng dụng hoặc hình ảnh), điện thoại (ứng dụng flashcard)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Ánh sáng:</h3>
+                <ul>
+                    <li>Sử dụng ánh sáng tự nhiên từ cửa sổ (nếu quay vào lúc sáng)</li>
+                    <li>Nếu quay vào buổi chiều/tối, sử dụng 2 bóng đèn LED đặt hai bên (tránh tạo bóng trên mặt)</li>
+                    <li><strong>Mục tiêu:</strong> Khuôn mặt sáng rõ, không có bóng tối dưới mắt</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Âm thanh:</h3>
+                <ul>
+                    <li>Quay trong phòng kín để tránh tiếng gió, tiếng xe ngoài đường</li>
+                    <li>Điều chỉnh micro điện thoại gần người nói (cách ~30cm) để âm thanh rõ ràng</li>
+                    <li><strong>Không dùng âm thanh nền</strong> (tập trung vào giọng nói rõ ràng)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Thiết bị cần chuẩn bị:</h3>
+                <ul>
+                    <li>1 điện thoại/máy quay (quay video)</li>
+                    <li>1 chiếc giá đỡ điện thoại (để giữ camera ổn định)</li>
+                    <li>2 bóng đèn LED (nếu cần)</li>
+                    <li>1 laptop/tablet (để demo ứng dụng hoặc hình ảnh)</li>
+                    <li>1 script in sẵn cho từng nhân vật (để tham khảo nhanh)</li>
+                </ul>
+            </div>
+
+            <!-- KỊCH BẢN CHI TIẾT -->
+            <h2><span class="emoji">🎬</span>KỊCH BẢN CHI TIẾT</h2>
+
+            <!-- PHẦN 1 -->
+            <div class="timeline-item">
+                <h3>PHẦN 1: MỞ ĐẦU (0:00 - 0:40) | 40 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Nhóm trưởng (Nam) - A</li>
+                    <li><strong>Vị trí quay:</strong> Nhóm đứng/ngồi thành vòng tròn hoặc hàng ngang, nhìn chính vào camera</li>
+                    <li><strong>Khung hình:</strong> Wide shot toàn bộ nhóm (từ thắt lưng trở lên), sau đó zoom in cận mặt nhóm trưởng khi nói</li>
+                    <li><strong>Chuyển động camera:</strong> Bắt đầu bằng wide shot, từ từ zoom in vào nhóm trưởng</li>
+                    <li><strong>Biểu cảm:</strong> Tươi cười, tự tin, hướng thẳng về phía camera</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[NHÓM TRƯỞNG - A nói, mỉm cười hướng tới camera]</span>
+
+"Hello everyone! My name is A, and I am the leader of our team. 
+Welcome to our video! Today, I want to introduce our project to you.
+
+Our team has chosen the theme: 'Creative Technology for Community'.
+We have created an amazing app to help students study for their Cambridge exam. 
+
+In this video, we will show you:
+- The problem we found,
+- Our solution,
+- And our plan to help many students in our community.
+
+Let's start!"
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0:00-0:05</td>
+                            <td>Wide shot toàn nhóm</td>
+                            <td>Không</td>
+                            <td>Nhóm đứng/ngồi, cười, vẫy tay chào</td>
+                        </tr>
+                        <tr>
+                            <td>0:05-0:20</td>
+                            <td>Zoom in cận mặt A</td>
+                            <td>Zoom từ từ</td>
+                            <td>A nói phần "Hello everyone..."</td>
+                        </tr>
+                        <tr>
+                            <td>0:20-0:40</td>
+                            <td>Cận mặt A</td>
+                            <td>Không</td>
+                            <td>A nói phần "Our team has chosen..." đến "Let's start!"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PHẦN 2 -->
+            <div class="timeline-item">
+                <h3>PHẦN 2: VẤN ĐỀ (0:40 - 1:25) | 45 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Bạn nữ #1 - B</li>
+                    <li><strong>Vị trí quay:</strong> B đứng/ngồi ở giữa frame, nhóm khác có thể đứng ở phía sau (blurred background)</li>
+                    <li><strong>Khung hình:</strong> Cận mặt B (từ vai trở lên), sau đó có thể cắt sang hình ảnh/slide mô tả vấn đề</li>
+                    <li><strong>Biểu cảm:</strong> Nghiêm túc, lo lắng khi nói về vấn đề</li>
+                    <li><strong>Hiệu ứng hình ảnh:</strong> Nếu có, hiển thị ảnh học sinh đang học, hoặc text: "Problem: Lack of study materials"</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[BẠN NỮ #1 - B nói, biểu cảm nghiêm túc]</span>
+
+"Let me tell you about the problem we found in our school.
+
+Many students want to study hard and pass their Cambridge exam. But there is a big problem: they don't have enough study materials.
+
+They need:
+- Practice questions for the exam,
+- Vocabulary flashcards to remember new words,
+- Important concepts from their study guides.
+
+But these materials are difficult to find. Many students feel stressed because they don't know where to find good study materials.
+
+This is the problem we want to solve!"
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0:40-0:50</td>
+                            <td>Cận mặt B</td>
+                            <td>Không</td>
+                            <td>B giới thiệu vấn đề</td>
+                        </tr>
+                        <tr>
+                            <td>0:50-1:15</td>
+                            <td>Cắt sang slide/ảnh</td>
+                            <td>Zoom in từ từ</td>
+                            <td>Hiển thị hình ảnh học sinh, text "Problem", hoặc demo tìm tài liệu khó khăn</td>
+                        </tr>
+                        <tr>
+                            <td>1:15-1:25</td>
+                            <td>Cận mặt B lại</td>
+                            <td>Không</td>
+                            <td>B kết luận phần vấn đề</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PHẦN 3.1 -->
+            <div class="timeline-item">
+                <h3>PHẦN 3: GIẢI PHÁP - PHẦN 1 (1:25 - 1:55) | 30 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Bạn nữ #2 - C</li>
+                    <li><strong>Vị trí quay:</strong> C đứng/ngồi ở giữa frame, có thể cầm điện thoại/tablet để demo</li>
+                    <li><strong>Khung hình:</strong> Cận mặt C + OTS shot (over-the-shoulder, quay từ phía sau C, nhìn thấy điện thoại/tablet trên tay)</li>
+                    <li><strong>Biểu cảm:</strong> Hứng thú, vui vẻ khi giới thiệu giải pháp</li>
+                    <li><strong>Hiệu ứng hình ảnh:</strong> Demo ứng dụng trên điện thoại (flashcard, giao diện app)</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[BẠN NỮ #2 - C nói, tươi cười, cầm điện thoại/tablet]</span>
+
+"Now, we have created a solution! 
+We have developed an app called 'Cambridge Exam Prep App'.
+
+This app has amazing features:
+
+First, it has many practice questions. These questions are from real Cambridge exams from previous years. Students can practice and learn 
+from them.
+
+Second, the app has flashcards for vocabulary. Students can learn new words easily and remember them faster."
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1:25-1:35</td>
+                            <td>Cận mặt C</td>
+                            <td>Không</td>
+                            <td>C giới thiệu "Now, we have created..."</td>
+                        </tr>
+                        <tr>
+                            <td>1:35-1:50</td>
+                            <td>OTS shot (C + điện thoại)</td>
+                            <td>Slow zoom in</td>
+                            <td>C demo ứng dụng, chỉ vào features</td>
+                        </tr>
+                        <tr>
+                            <td>1:50-1:55</td>
+                            <td>Cận mặt C</td>
+                            <td>Không</td>
+                            <td>C kết luận phần 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PHẦN 3.2 -->
+            <div class="timeline-item">
+                <h3>PHẦN 3: GIẢI PHÁP - PHẦN 2 (1:55 - 2:45) | 50 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Bạn nữ #3 - D</li>
+                    <li><strong>Vị trí quay:</strong> D đứng/ngồi, có thể cầm laptop/tablet để demo tính năng khác</li>
+                    <li><strong>Khung hình:</strong> Cận mặt D + OTS shot hoặc wide shot (để nhìn thấy laptop)</li>
+                    <li><strong>Biểu cảm:</strong> Động phác, nhiệt tình</li>
+                    <li><strong>Hiệu ứng hình ảnh:</strong> Demo tính năng lưu trữ trên ứng dụng, hoặc slider/transition giữa các màn hình</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[BẠN NỮ #3 - D nói, với nước ngoài tay khi nói]</span>
+
+"But wait, there's more! Our app also has:
+
+Third, it stores important concepts and notes from study guides. 
+All the information is organized nicely, so students can find what they need quickly.
+
+And fourth, the app saves all the exam papers and study materials from previous years. This way, students in the next classes can use these materials to study.
+
+The app is very easy to use. Every student can download it on their phone or computer. No more searching for study materials! Everything is in one place!
+
+Our app helps students study smarter, not harder."
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1:55-2:10</td>
+                            <td>Cận mặt D</td>
+                            <td>Không</td>
+                            <td>D giới thiệu tính năng 3 & 4</td>
+                        </tr>
+                        <tr>
+                            <td>2:10-2:30</td>
+                            <td>OTS shot (D + laptop)</td>
+                            <td>Slow zoom in</td>
+                            <td>D demo tính năng lưu trữ trên ứng dụng</td>
+                        </tr>
+                        <tr>
+                            <td>2:30-2:45</td>
+                            <td>Cận mặt D</td>
+                            <td>Không</td>
+                            <td>D kết luận giải pháp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PHẦN 4 -->
+            <div class="timeline-item">
+                <h3>PHẦN 4: LỢI ÍCH & TÁC ĐỘNG (2:45 - 3:20) | 35 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Bạn nữ #4 - E</li>
+                    <li><strong>Vị trí quay:</strong> E đứng/ngồi ở giữa frame, có thể đứng cạnh nhóm trưởng (2 người chia sẻ frame)</li>
+                    <li><strong>Khung hình:</strong> Cận mặt E, sau đó có thể cắt sang mid-shot (toàn thân E)</li>
+                    <li><strong>Biểu cảm:</strong> Lạc quan, tích cực, nói về hy vọng và tác động tích cực</li>
+                    <li><strong>Hiệu ứng hình ảnh:</strong> Có thể hiển thị hình ảnh của học sinh vui vẻ, hay thống kê (nếu có)</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[BẠN NỮ #4 - E nói, hướng mặt trực tiếp vào camera, tươi cười]</span>
+
+"Why is this app important for our community?
+
+With our app, students will feel less stressed about studying. 
+They will have all the materials they need in one place. This will help them pass their Cambridge exam with better scores.
+
+Not only that, the app helps the whole school. Students from older classes can share their materials and help younger students. The school will have a good study resource library.
+
+Also, our app is free! Every student can use it without paying money. We believe education should be easy and free for everyone.
+
+That is why our app will make a big difference for students and our whole community!"
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2:45-3:00</td>
+                            <td>Cận mặt E</td>
+                            <td>Không</td>
+                            <td>E nói lợi ích cho học sinh</td>
+                        </tr>
+                        <tr>
+                            <td>3:00-3:15</td>
+                            <td>Mid-shot E (toàn thân)</td>
+                            <td>Slow pan (quay camera nhẹ)</td>
+                            <td>E nói lợi ích cho cộng đồng & tác động</td>
+                        </tr>
+                        <tr>
+                            <td>3:15-3:20</td>
+                            <td>Cận mặt E</td>
+                            <td>Không</td>
+                            <td>E kết luận</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PHẦN 5 -->
+            <div class="timeline-item">
+                <h3>PHẦN 5: KẾ HOẠCH & KẾT THÚC (3:20 - 3:50) | 30 giây</h3>
+            </div>
+
+            <div class="section">
+                <h4>📝 Nội dung ghi chú (Tiếng Việt):</h4>
+                <ul>
+                    <li><strong>Người nói:</strong> Nhóm trưởng (Nam) - A + Bạn nữ #4 - E (có thể nói xen kẽ hoặc A nói chính)</li>
+                    <li><strong>Vị trí quay:</strong> A & E đứng cạnh nhau ở giữa frame, hoặc đứng cách nhau một chút</li>
+                    <li><strong>Khung hình:</strong> Wide shot toàn bộ nhóm (5 người) đứng kế nhau hoặc thành vòng tròn</li>
+                    <li><strong>Biểu cảm:</strong> Tự tin, trách nhiệm, quyết tâm</li>
+                    <li><strong>Hiệu ứng hình ảnh:</strong> Có thể tính năng để slide text: "Our Plan", "Our Steps", "Join Us!", hoặc hiển thị logo ứng dụng</li>
+                </ul>
+            </div>
+
+            <div class="section-script">
+                <h4>🗣️ Lời thoại (Tiếng Anh):</h4>
+                <div class="dialogue">
+<span class="dialogue-header">[NHÓM TRƯỞNG - A nói đầu tiên]</span>
+
+"Our plan to make this real is:
+
+First, we are collecting exam papers and study materials from teachers and older students.
+
+Second, we are using AI technology to extract vocabulary and important concepts from these materials.
+
+Third, we are building the app features, like flashcards and question banks.
+
+And finally, we will test the app with real students and listen to their feedback."
+
+<span class="dialogue-header">[BẠN NỮ #4 - E kết thúc, hoặc A tiếp tục]</span>
+
+"Our team is ready to work hard and make this app real. 
+We want to help every student study better.
+
+If you like our idea, please support us! 
+Together, we can help our community!
+
+Thank you for watching our video!"
+                </div>
+            </div>
+
+            <div class="section-camera">
+                <h4>📐 Chi tiết camera (Tiếng Việt):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khung hình</th>
+                            <th>Chuyển động</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3:20-3:30</td>
+                            <td>Wide shot toàn nhóm</td>
+                            <td>Slow zoom out</td>
+                            <td>A nói về kế hoạch thực hiện</td>
+                        </tr>
+                        <tr>
+                            <td>3:30-3:45</td>
+                            <td>Cận mặt A & E (side by side)</td>
+                            <td>Không</td>
+                            <td>E (hoặc A) nói phần kêu gọi hỗ trợ</td>
+                        </tr>
+                        <tr>
+                            <td>3:45-3:50</td>
+                            <td>Wide shot toàn nhóm</td>
+                            <td>Slow zoom out</td>
+                            <td>Nhóm vẫy tay chào, cười, "Thank you!"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TIMELINE CHI TIẾT -->
+            <h2><span class="emoji">⏱️</span>TIMELINE CHI TIẾT (Giây từng phần)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phần</th>
+                        <th>Bắt đầu</th>
+                        <th>Kết thúc</th>
+                        <th>Thời lượng</th>
+                        <th>Nhân vật</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mở đầu</strong></td>
+                        <td>0:00</td>
+                        <td>0:40</td>
+                        <td>40 giây</td>
+                        <td>A (Nam)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vấn đề</strong></td>
+                        <td>0:40</td>
+                        <td>1:25</td>
+                        <td>45 giây</td>
+                        <td>B (Nữ #1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giải pháp - P1</strong></td>
+                        <td>1:25</td>
+                        <td>1:55</td>
+                        <td>30 giây</td>
+                        <td>C (Nữ #2)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giải pháp - P2</strong></td>
+                        <td>1:55</td>
+                        <td>2:45</td>
+                        <td>50 giây</td>
+                        <td>D (Nữ #3)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lợi ích & Tác động</strong></td>
+                        <td>2:45</td>
+                        <td>3:20</td>
+                        <td>35 giây</td>
+                        <td>E (Nữ #4)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kế hoạch & Kết thúc</strong></td>
+                        <td>3:20</td>
+                        <td>3:50</td>
+                        <td>30 giây</td>
+                        <td>A (Nam) + E (Nữ #4)</td>
+                    </tr>
+                    <tr style="background: #f0f0f0; font-weight: bold;">
+                        <td><strong>TỔNG CỘNG</strong></td>
+                        <td>0:00</td>
+                        <td>3:50</td>
+                        <td>230 giây (3m50s)</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- HƯỚNG DẪN QUAY CAMERA -->
+            <h2><span class="emoji">🎥</span>HƯỚNG DẪN QUAY CAMERA (CHI TIẾT KỸ THUẬT)</h2>
+
+            <div class="info">
+                <h3>Yêu cầu về chất lượng video:</h3>
+                <ul>
+                    <li><strong>Độ phân giải:</strong> 1080p (Full HD) hoặc cao hơn</li>
+                    <li><strong>Tỉ lệ hình ảnh:</strong> 16:9 (ngang)</li>
+                    <li><strong>Tốc độ frame:</strong> 30 fps hoặc 60 fps</li>
+                    <li><strong>Định dạng lưu trữ:</strong> MP4 hoặc MOV</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>1. Khung hình (Framing):</h3>
+                <ul>
+                    <li><strong>Wide shot:</strong> Từ thắt lưng trở lên, nhìn thấy toàn bộ nhóm hoặc phần lớn thân người</li>
+                    <li><strong>Mid shot:</strong> Từ hông trở lên, từ khoảng nửa thân người</li>
+                    <li><strong>Close-up/Cận cảnh:</strong> Chỉ khuôn mặt và vai</li>
+                    <li><strong>OTS shot (Over-the-shoulder):</strong> Quay từ phía sau vai người, nhìn thấy cái gì họ đang cầm</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>2. Chuyển động camera:</h3>
+                <ul>
+                    <li><strong>Zoom in:</strong> Từ từ phóng to để tập trung vào khuôn mặt hoặc chi tiết</li>
+                    <li><strong>Zoom out:</strong> Từ từ thu nhỏ để nhìn thấy bối cảnh rộng hơn</li>
+                    <li><strong>Pan:</strong> Quay camera sang trái/phải ngang từ từ</li>
+                    <li><strong>Tilt:</strong> Quay camera lên/xuống từ từ</li>
+                    <li><strong>Dolly/Truck:</strong> Di chuyển camera tiến/lùi (nếu có tripod/gimbal)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>3. Chuyển cảnh (Transitions):</h3>
+                <ul>
+                    <li><strong>Cut:</strong> Cắt trực tiếp từ khung hình này sang khung hình khác (nhanh)</li>
+                    <li><strong>Fade:</strong> Mờ dần từ ảnh này sang ảnh khác (chậm, 1-2 giây)</li>
+                    <li><strong>Dissolve:</strong> Hòa lẫn hai hình ảnh lại (chuyên nghiệp hơn)</li>
+                </ul>
+            </div>
+
+            <!-- CHECKLIST -->
+            <h2><span class="emoji">📋</span>CHECKLIST TRƯỚC KHI QUAY</h2>
+
+            <div class="section">
+                <h3>Script/Kịch bản:</h3>
+                <ul class="checklist">
+                    <li>In sẵn cho từng nhân vật, để ở vị trí dễ nhìn</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Thiết bị:</h3>
+                <ul class="checklist">
+                    <li>Điện thoại/máy quay (pin đầy)</li>
+                    <li>Giá đỡ/Tripod (để camera ổn định)</li>
+                    <li>Bóng đèn LED hoặc cửa sổ (kiểm tra ánh sáng)</li>
+                    <li>Microphone (nếu có, để âm thanh tốt hơn)</li>
+                    <li>Laptop/Tablet (để demo ứng dụng)</li>
+                    <li>Áo quần sạch sẽ, phù hợp</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Vị trí quay:</h3>
+                <ul class="checklist">
+                    <li>Dọn sạch background (tối giản, gọn gàng)</li>
+                    <li>Kiểm tra ánh sáng (sáng đủ, không có bóng)</li>
+                    <li>Kiểm tra âm thanh (yên tĩnh, không tiếng ngoài)</li>
+                    <li>Đảm bảo camera có không gian quay (không bị chặn)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Diễn tập:</h3>
+                <ul class="checklist">
+                    <li>Mỗi nhân vật luyện tập lời thoại của mình</li>
+                    <li>Tập phối hợp giữa các nhân vật (chuyển người nói)</li>
+                    <li>Luyện tập biểu cảm và cử chỉ tự nhiên</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Khác:</h3>
+                <ul class="checklist">
+                    <li>Tắt điện thoại của những người khác (tránh tiếng chuông)</li>
+                    <li>Chọn thời gian quay có ánh sáng tốt (sáng, chiều sớm)</li>
+                </ul>
+            </div>
+
+            <!-- POST-PRODUCTION -->
+            <h2><span class="emoji">💡</span>CẦN CHỈNH SỬA TRONG POST-PRODUCTION (SAU KHI QUAY)</h2>
+
+            <div class="warning">
+                <p>Những việc cần làm sau khi quay xong (dùng phần mềm edit như iMovie, CapCut, Adobe Premiere):</p>
+            </div>
+
+            <ol>
+                <li><strong>Ghép các đoạn video lại</strong> theo thứ tự đã dự định</li>
+                <li><strong>Cắt bỏ các phần bị sai</strong>, chuyển động xấu hoặc âm thanh không rõ</li>
+                <li><strong>Thêm chuyển cảnh</strong> (fade, dissolve) giữa các phần nếu cần</li>
+                <li><strong>Thêm text overlay</strong> (chữ):
+                    <ul>
+                        <li>Tên chủ đề</li>
+                        <li>"Problem", "Solution", "Benefits", "Our Plan"</li>
+                        <li>Tên ứng dụng: "Cambridge Exam Prep App"</li>
+                    </ul>
+                </li>
+                <li><strong>Điều chỉnh âm thanh:</strong> Cân bằng âm lượng, xóa tiếng ồn nếu có</li>
+                <li><strong>Kiểm tra timing:</strong> Đảm bảo video dài 3-5 phút</li>
+                <li><strong>Kiểm tra lần cuối:</strong> Xem toàn bộ video, kiểm tra chất lượng hình ảnh, âm thanh, nội dung</li>
+            </ol>
+
+            <!-- LƯU Ý QUAN TRỌNG -->
+            <h2><span class="emoji">📌</span>LƯU Ý QUAN TRỌNG</h2>
+
+            <div class="success">
+                <ol>
+                    <li><strong>Lời thoại tiếng Anh:</strong> Tất cả lời thoại đã được viết ở mức A2-B1, từ vựng đơn giản và câu không quá dài</li>
+                    <li><strong>Nội dung phù hợp:</strong> Toàn bộ nội dung dành cho học sinh, dễ hiểu và gợi cảm hứng</li>
+                    <li><strong>Timing:</strong> Mỗi phần đã được ước tính thời gian rõ ràng (tính bằng giây)</li>
+                    <li><strong>Biểu cảm:</strong> Yêu cầu mỗi nhân vật có biểu cảm tự nhiên, nên tập luyện trước</li>
+                    <li><strong>Chất lượng video:</strong> Ưu tiên âm thanh rõ ràng và ánh sáng tốt hơn là hiệu ứng phức tạp</li>
+                </ol>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+                <h2 style="color: white; border: none; margin: 0; padding: 0;">🎉 Chúc bạn quay phim thành công! 🎉</h2>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="window.print()">🖨️ In kịch bản</button>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add print styles
+        window.addEventListener('beforeprint', () => {
+            document.body.style.background = 'white';
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        });
+    </script>
+</body>
+</html>

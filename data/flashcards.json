@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "fc-1",
+    "front": "Evaporation",
+    "back": "The process where liquid water changes into water vapor due to heat",
+    "backViet": "Quá trình nước lỏng biến thành hơi nước do tác động của nhiệt",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["water-cycle", "science-g5"]
+  },
+  {
+    "id": "fc-2",
+    "front": "Condensation",
+    "back": "The process where water vapor cools and changes back into liquid water",
+    "backViet": "Quá trình hơi nước làm lạnh và biến trở lại thành nước lỏng",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["water-cycle", "science-g5"]
+  },
+  {
+    "id": "fc-3",
+    "front": "Photosynthesis",
+    "back": "The process by which plants use sunlight, water, and carbon dioxide to make food (glucose)",
+    "backViet": "Quá trình mà các cây sử dụng ánh sáng mặt trời, nước và carbon dioxide để tạo ra thực phẩm (glucose)",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["plants", "science-g4"]
+  },
+  {
+    "id": "fc-4",
+    "front": "Chlorophyll",
+    "back": "The green pigment in plant leaves that absorbs sunlight for photosynthesis",
+    "backViet": "Sắc tố xanh trong lá cây có khả năng hấp thụ ánh sáng mặt trời để quang hợp",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["plants", "science-g4"]
+  },
+  {
+    "id": "fc-5",
+    "front": "Fraction",
+    "back": "A part of a whole number, written as a/b where a is the numerator and b is the denominator",
+    "backViet": "Một phần của một số nguyên, được viết dưới dạng a/b với a là tử số và b là mẫu số",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["fractions", "math-g5"]
+  },
+  {
+    "id": "fc-6",
+    "front": "Percentage",
+    "back": "A fraction or proportion expressed as parts per hundred, shown with the % symbol",
+    "backViet": "Một phân số hoặc tỷ lệ được biểu thị dưới dạng phần trăm, ký hiệu là %",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["fractions", "math-g5"]
+  },
+  {
+    "id": "fc-7",
+    "front": "Adjective",
+    "back": "A word that describes or modifies a noun, like 'beautiful', 'big', or 'happy'",
+    "backViet": "Một từ dùng để mô tả hoặc chỉnh sửa danh từ, chẳng hạn như 'beautiful', 'big', 'happy'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["grammar", "english-g5"]
+  },
+  {
+    "id": "fc-8",
+    "front": "Past Tense",
+    "back": "A verb form that describes an action that happened in the past, like 'walked', 'talked', or 'played'",
+    "backViet": "Dạng động từ mô tả một hành động đã xảy ra trong quá khứ, như 'walked', 'talked', 'played'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["grammar", "english-g5"]
+  },
+  {
+    "id": "fc-9",
+    "front": "Ecosystem",
+    "back": "A community of living organisms interacting with their physical environment",
+    "backViet": "Cộng đồng các sinh vật sống tương tác với môi trường vật lý của chúng",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["biology", "science-g5"]
+  },
+  {
+    "id": "fc-10",
+    "front": "Habitat",
+    "back": "The natural home or environment of an animal, plant, or organism",
+    "backViet": "Môi trường sống tự nhiên của động vật, thực vật hoặc sinh vật",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["biology", "science-g4"]
+  },
+  {
+    "id": "fc-11",
+    "front": "Multiplication",
+    "back": "A mathematical operation of repeated addition, shown with × symbol",
+    "backViet": "Phép tính toán học về phép cộng lặp lại, ký hiệu là ×",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["arithmetic", "math-g3"]
+  },
+  {
+    "id": "fc-12",
+    "front": "Division",
+    "back": "A mathematical operation of splitting into equal parts, shown with ÷ symbol",
+    "backViet": "Phép toán học chia thành các phần bằng nhau, ký hiệu là ÷",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["arithmetic", "math-g3"]
+  },
+  {
+    "id": "fc-13",
+    "front": "Synonym",
+    "back": "A word that has the same or similar meaning as another word",
+    "backViet": "Từ có nghĩa giống hoặc tương tự với từ khác",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["vocabulary", "english-g4"]
+  },
+  {
+    "id": "fc-14",
+    "front": "Antonym",
+    "back": "A word that has the opposite meaning of another word",
+    "backViet": "Từ có nghĩa trái ngược với từ khác",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["vocabulary", "english-g4"]
+  },
+  {
+    "id": "fc-15",
+    "front": "Precipitation",
+    "back": "Water that falls from clouds to the ground as rain, snow, sleet, or hail",
+    "backViet": "Nước rơi từ mây xuống đất dưới dạng mưa, tuyết, mưa đá",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["water-cycle", "science-g5"]
+  },
+  {
+    "id": "fc-16",
+    "front": "Noun",
+    "back": "A word that names a person, place, thing, or idea",
+    "backViet": "Từ chỉ tên người, địa điểm, đồ vật hoặc ý tưởng",
+    "subject": "English",
+    "grade": 3,
+    "tags": ["grammar", "english-g3"]
+  },
+  {
+    "id": "fc-17",
+    "front": "Verb",
+    "back": "A word that describes an action, state, or occurrence",
+    "backViet": "Từ mô tả hành động, trạng thái hoặc sự kiện",
+    "subject": "English",
+    "grade": 3,
+    "tags": ["grammar", "english-g3"]
+  },
+  {
+    "id": "fc-18",
+    "front": "Perimeter",
+    "back": "The total distance around the outside of a shape",
+    "backViet": "Tổng khoảng cách xung quanh bên ngoài của một hình",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-19",
+    "front": "Area",
+    "back": "The amount of space inside a two-dimensional shape, measured in square units",
+    "backViet": "Diện tích không gian bên trong hình hai chiều, đo bằng đơn vị vuông",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-20",
+    "front": "Volume",
+    "back": "The amount of space inside a three-dimensional object, measured in cubic units",
+    "backViet": "Thể tích không gian bên trong vật thể ba chiều, đo bằng đơn vị khối",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-21",
+    "front": "Carnivore",
+    "back": "An animal that eats only meat",
+    "backViet": "Động vật chỉ ăn thịt",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-22",
+    "front": "Herbivore",
+    "back": "An animal that eats only plants",
+    "backViet": "Động vật chỉ ăn thực vật",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-23",
+    "front": "Omnivore",
+    "back": "An animal that eats both plants and meat",
+    "backViet": "Động vật ăn cả thực vật và thịt",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-24",
+    "front": "Metaphor",
+    "back": "A figure of speech comparing two things without using 'like' or 'as'",
+    "backViet": "Phép tu từ so sánh hai thứ mà không dùng 'like' hoặc 'as'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-25",
+    "front": "Simile",
+    "back": "A figure of speech comparing two things using 'like' or 'as'",
+    "backViet": "Phép tu từ so sánh hai thứ bằng cách dùng 'like' hoặc 'as'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-26",
+    "front": "Decimal",
+    "back": "A number with a decimal point, representing parts of a whole number",
+    "backViet": "Số có dấu thập phân, đại diện cho các phần của số nguyên",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["decimals", "math-g5"]
+  },
+  {
+    "id": "fc-27",
+    "front": "Prime Number",
+    "back": "A number greater than 1 that can only be divided by 1 and itself",
+    "backViet": "Số lớn hơn 1 chỉ có thể chia hết cho 1 và chính nó",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["number-theory", "math-g5"]
+  },
+  {
+    "id": "fc-28",
+    "front": "Composite Number",
+    "back": "A number greater than 1 that has more than two factors",
+    "backViet": "Số lớn hơn 1 có nhiều hơn hai ước số",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["number-theory", "math-g5"]
+  },
+  {
+    "id": "fc-29",
+    "front": "Adverb",
+    "back": "A word that modifies a verb, adjective, or another adverb, often ending in -ly",
+    "backViet": "Từ bổ nghĩa cho động từ, tính từ hoặc trạng từ khác, thường kết thúc bằng -ly",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["grammar", "english-g5"]
+  },
+  {
+    "id": "fc-30",
+    "front": "Pronoun",
+    "back": "A word used in place of a noun, like 'he', 'she', 'it', or 'they'",
+    "backViet": "Từ dùng thay thế danh từ, như 'he', 'she', 'it', 'they'",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["grammar", "english-g4"]
+  },
+  {
+    "id": "fc-31",
+    "front": "Solid",
+    "back": "A state of matter with a fixed shape and volume",
+    "backViet": "Trạng thái vật chất có hình dạng và thể tích cố định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["matter", "science-g4"]
+  },
+  {
+    "id": "fc-32",
+    "front": "Liquid",
+    "back": "A state of matter with a fixed volume but no fixed shape",
+    "backViet": "Trạng thái vật chất có thể tích cố định nhưng không có hình dạng cố định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["matter", "science-g4"]
+  },
+  {
+    "id": "fc-33",
+    "front": "Gas",
+    "back": "A state of matter with no fixed shape or volume",
+    "backViet": "Trạng thái vật chất không có hình dạng hoặc thể tích cố định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["matter", "science-g4"]
+  },
+  {
+    "id": "fc-34",
+    "front": "Energy",
+    "back": "The ability to do work or cause change",
+    "backViet": "Khả năng thực hiện công việc hoặc gây ra sự thay đổi",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["energy", "science-g5"]
+  },
+  {
+    "id": "fc-35",
+    "front": "Renewable Energy",
+    "back": "Energy from sources that can be naturally replenished, like solar and wind",
+    "backViet": "Năng lượng từ các nguồn có thể tái tạo tự nhiên, như mặt trời và gió",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["energy", "science-g5"]
+  },
+  {
+    "id": "fc-36",
+    "front": "Angle",
+    "back": "The space between two lines or surfaces that meet at a point",
+    "backViet": "Không gian giữa hai đường hoặc bề mặt gặp nhau tại một điểm",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-37",
+    "front": "Parallel",
+    "back": "Lines that run alongside each other and never meet",
+    "backViet": "Các đường chạy song song và không bao giờ gặp nhau",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-38",
+    "front": "Perpendicular",
+    "back": "Lines that meet at a right angle (90 degrees)",
+    "backViet": "Các đường gặp nhau tạo góc vuông (90 độ)",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-39",
+    "front": "Quotation Marks",
+    "back": "Punctuation marks used to show the exact words someone said",
+    "backViet": "Dấu chấm câu dùng để hiển thị chính xác lời nói của ai đó",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["punctuation", "english-g4"]
+  },
+  {
+    "id": "fc-40",
+    "front": "Comma",
+    "back": "A punctuation mark used to separate items in a list or parts of a sentence",
+    "backViet": "Dấu chấm câu dùng để phân tách các mục trong danh sách hoặc các phần của câu",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["punctuation", "english-g4"]
+  },
+  {
+    "id": "fc-41",
+    "front": "Continent",
+    "back": "A large continuous mass of land, like Asia, Africa, or Europe",
+    "backViet": "Khối đất liền lớn, như châu Á, châu Phi, hoặc châu Âu",
+    "subject": "Geography",
+    "grade": 4,
+    "tags": ["geography", "world"]
+  },
+  {
+    "id": "fc-42",
+    "front": "Ocean",
+    "back": "A very large body of salt water, like the Pacific or Atlantic",
+    "backViet": "Vùng nước mặn rất lớn, như Thái Bình Dương hoặc Đại Tây Dương",
+    "subject": "Geography",
+    "grade": 4,
+    "tags": ["geography", "world"]
+  },
+  {
+    "id": "fc-43",
+    "front": "Equator",
+    "back": "An imaginary line around the middle of the Earth, dividing it into Northern and Southern hemispheres",
+    "backViet": "Đường tưởng tượng quanh giữa Trái Đất, chia nó thành bán cầu Bắc và Nam",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["geography", "earth"]
+  },
+  {
+    "id": "fc-44",
+    "front": "Gravity",
+    "back": "The force that pulls objects toward the center of the Earth",
+    "backViet": "Lực kéo các vật thể về phía trung tâm Trái Đất",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["forces", "science-g5"]
+  },
+  {
+    "id": "fc-45",
+    "front": "Friction",
+    "back": "The force that slows down or stops moving objects when they rub against each other",
+    "backViet": "Lực làm chậm hoặc dừng các vật thể chuyển động khi chúng cọ xát lẫn nhau",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["forces", "science-g5"]
+  },
+  {
+    "id": "fc-46",
+    "front": "Inference",
+    "back": "A conclusion reached based on evidence and reasoning",
+    "backViet": "Kết luận đạt được dựa trên bằng chứng và lý luận",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["reading-comprehension", "english-g5"]
+  },
+  {
+    "id": "fc-47",
+    "front": "Context Clues",
+    "back": "Hints in the surrounding text that help you understand the meaning of unfamiliar words",
+    "backViet": "Gợi ý trong văn bản xung quanh giúp bạn hiểu nghĩa của các từ không quen thuộc",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["reading-comprehension", "english-g4"]
+  },
+  {
+    "id": "fc-48",
+    "front": "Average",
+    "back": "The sum of numbers divided by how many numbers there are",
+    "backViet": "Tổng các số chia cho số lượng các số",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-49",
+    "front": "Median",
+    "back": "The middle number in a sorted list of numbers",
+    "backViet": "Số ở giữa trong danh sách các số đã sắp xếp",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-50",
+    "front": "Mode",
+    "back": "The number that appears most often in a set of numbers",
+    "backViet": "Số xuất hiện nhiều nhất trong một tập hợp các số",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-51",
+    "front": "Metamorphosis",
+    "back": "The transformation of an animal from one stage to another, like caterpillar to butterfly",
+    "backViet": "Sự biến đổi của động vật từ giai đoạn này sang giai đoạn khác, như sâu bướm thành bướm",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["life-cycles", "science-g4"]
+  },
+  {
+    "id": "fc-52",
+    "front": "Vertebrate",
+    "back": "An animal with a backbone or spine",
+    "backViet": "Động vật có xương sống",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-53",
+    "front": "Invertebrate",
+    "back": "An animal without a backbone or spine",
+    "backViet": "Động vật không có xương sống",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-54",
+    "front": "Polygon",
+    "back": "A closed two-dimensional shape with straight sides",
+    "backViet": "Hình hai chiều kín với các cạnh thẳng",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-55",
+    "front": "Triangle",
+    "back": "A polygon with three sides and three angles",
+    "backViet": "Đa giác có ba cạnh và ba góc",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["geometry", "math-g3"]
+  },
+  {
+    "id": "fc-56",
+    "front": "Rectangle",
+    "back": "A polygon with four sides and four right angles",
+    "backViet": "Đa giác có bốn cạnh và bốn góc vuông",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["geometry", "math-g3"]
+  },
+  {
+    "id": "fc-57",
+    "front": "Circle",
+    "back": "A round shape where all points are the same distance from the center",
+    "backViet": "Hình tròn trong đó tất cả các điểm đều cách đều tâm",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["geometry", "math-g3"]
+  },
+  {
+    "id": "fc-58",
+    "front": "Prefix",
+    "back": "A letter or group of letters added to the beginning of a word to change its meaning",
+    "backViet": "Chữ cái hoặc nhóm chữ cái thêm vào đầu từ để thay đổi nghĩa của nó",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["word-structure", "english-g4"]
+  },
+  {
+    "id": "fc-59",
+    "front": "Suffix",
+    "back": "A letter or group of letters added to the end of a word to change its meaning",
+    "backViet": "Chữ cái hoặc nhóm chữ cái thêm vào cuối từ để thay đổi nghĩa của nó",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["word-structure", "english-g4"]
+  },
+  {
+    "id": "fc-60",
+    "front": "Compound Word",
+    "back": "A word made by combining two or more words, like 'rainbow' or 'football'",
+    "backViet": "Từ được tạo bằng cách kết hợp hai hoặc nhiều từ, như 'rainbow' hoặc 'football'",
+    "subject": "English",
+    "grade": 3,
+    "tags": ["word-structure", "english-g3"]
+  },
+  {
+    "id": "fc-61",
+    "front": "Cell",
+    "back": "The basic unit of life, the smallest part of a living thing",
+    "backViet": "Đơn vị cơ bản của sự sống, phần nhỏ nhất của sinh vật sống",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["cells", "science-g5"]
+  },
+  {
+    "id": "fc-62",
+    "front": "Organ",
+    "back": "A group of tissues that work together to perform a specific function, like the heart or lungs",
+    "backViet": "Nhóm các mô làm việc cùng nhau để thực hiện chức năng cụ thể, như tim hoặc phổi",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["body-systems", "science-g5"]
+  },
+  {
+    "id": "fc-63",
+    "front": "Symmetry",
+    "back": "When one half of a shape is a mirror image of the other half",
+    "backViet": "Khi một nửa hình là hình ảnh phản chiếu của nửa còn lại",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-64",
+    "front": "Reflection",
+    "back": "A transformation that flips a shape over a line to create a mirror image",
+    "backViet": "Phép biến đổi lật hình qua một đường để tạo hình ảnh gương",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["transformations", "math-g5"]
+  },
+  {
+    "id": "fc-65",
+    "front": "Rotation",
+    "back": "A transformation that turns a shape around a fixed point",
+    "backViet": "Phép biến đổi xoay hình quanh một điểm cố định",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["transformations", "math-g5"]
+  },
+  {
+    "id": "fc-66",
+    "front": "Alliteration",
+    "back": "The repetition of the same sound at the beginning of words, like 'Peter Piper picked'",
+    "backViet": "Sự lặp lại âm thanh giống nhau ở đầu các từ, như 'Peter Piper picked'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-67",
+    "front": "Onomatopoeia",
+    "back": "A word that imitates a sound, like 'buzz', 'crash', or 'meow'",
+    "backViet": "Từ bắt chước âm thanh, như 'buzz', 'crash', 'meow'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-68",
+    "front": "Homophone",
+    "back": "Words that sound the same but have different meanings and spellings, like 'two', 'to', 'too'",
+    "backViet": "Từ phát âm giống nhau nhưng có nghĩa và cách viết khác nhau, như 'two', 'to', 'too'",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["vocabulary", "english-g4"]
+  },
+  {
+    "id": "fc-69",
+    "front": "Homonym",
+    "back": "Words that are spelled and pronounced the same but have different meanings, like 'bat' (animal) and 'bat' (sports equipment)",
+    "backViet": "Từ được viết và phát âm giống nhau nhưng có nghĩa khác nhau, như 'bat' (động vật) và 'bat' (dụng cụ thể thao)",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["vocabulary", "english-g4"]
+  },
+  {
+    "id": "fc-70",
+    "front": "Mammal",
+    "back": "A warm-blooded animal that has hair or fur and feeds its babies with milk",
+    "backViet": "Động vật có máu nóng có lông và cho con bú sữa",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-71",
+    "front": "Reptile",
+    "back": "A cold-blooded animal with dry scaly skin that lays eggs on land",
+    "backViet": "Động vật máu lạnh có da khô với vảy và đẻ trứng trên cạn",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-72",
+    "front": "Amphibian",
+    "back": "A cold-blooded animal that lives both on land and in water, like frogs",
+    "backViet": "Động vật máu lạnh sống cả trên cạn và dưới nước, như ếch",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animals", "science-g4"]
+  },
+  {
+    "id": "fc-73",
+    "front": "Denominator",
+    "back": "The bottom number in a fraction that shows how many equal parts the whole is divided into",
+    "backViet": "Số ở dưới trong phân số cho biết toàn bộ được chia thành bao nhiêu phần bằng nhau",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["fractions", "math-g5"]
+  },
+  {
+    "id": "fc-74",
+    "front": "Numerator",
+    "back": "The top number in a fraction that shows how many parts are being considered",
+    "backViet": "Số ở trên trong phân số cho biết có bao nhiêu phần đang được xét",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["fractions", "math-g5"]
+  },
+  {
+    "id": "fc-75",
+    "front": "Equivalent Fractions",
+    "back": "Different fractions that represent the same value, like 1/2 and 2/4",
+    "backViet": "Các phân số khác nhau đại diện cho cùng một giá trị, như 1/2 và 2/4",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["fractions", "math-g5"]
+  },
+  {
+    "id": "fc-76",
+    "front": "Food Chain",
+    "back": "A sequence showing how energy and nutrients pass from one organism to another",
+    "backViet": "Chuỗi cho thấy năng lượng và chất dinh dưỡng truyền từ sinh vật này sang sinh vật khác",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["ecology", "science-g4"]
+  },
+  {
+    "id": "fc-77",
+    "front": "Producer",
+    "back": "An organism that makes its own food, usually plants through photosynthesis",
+    "backViet": "Sinh vật tự tạo thức ăn, thường là thực vật qua quang hợp",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["ecology", "science-g4"]
+  },
+  {
+    "id": "fc-78",
+    "front": "Consumer",
+    "back": "An organism that must eat other organisms for food",
+    "backViet": "Sinh vật phải ăn các sinh vật khác để lấy thức ăn",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["ecology", "science-g4"]
+  },
+  {
+    "id": "fc-79",
+    "front": "Decomposer",
+    "back": "An organism that breaks down dead plants and animals, like fungi and bacteria",
+    "backViet": "Sinh vật phân hủy thực vật và động vật chết, như nấm và vi khuẩn",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["ecology", "science-g4"]
+  },
+  {
+    "id": "fc-80",
+    "front": "Sentence",
+    "back": "A group of words that expresses a complete thought",
+    "backViet": "Nhóm từ diễn đạt một ý tưởng hoàn chỉnh",
+    "subject": "English",
+    "grade": 3,
+    "tags": ["grammar", "english-g3"]
+  },
+  {
+    "id": "fc-81",
+    "front": "Paragraph",
+    "back": "A group of sentences about one main idea",
+    "backViet": "Nhóm câu về một ý chính",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["writing", "english-g4"]
+  },
+  {
+    "id": "fc-82",
+    "front": "Topic Sentence",
+    "back": "The sentence that states the main idea of a paragraph",
+    "backViet": "Câu nêu ý chính của đoạn văn",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["writing", "english-g4"]
+  },
+  {
+    "id": "fc-83",
+    "front": "Conclusion",
+    "back": "The ending part of a text that wraps up the ideas",
+    "backViet": "Phần kết thúc của văn bản tóm tắt các ý tưởng",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["writing", "english-g5"]
+  },
+  {
+    "id": "fc-84",
+    "front": "Radius",
+    "back": "The distance from the center of a circle to any point on its edge",
+    "backViet": "Khoảng cách từ tâm đường tròn đến bất kỳ điểm nào trên rìa của nó",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-85",
+    "front": "Diameter",
+    "back": "The distance across a circle through its center, equal to twice the radius",
+    "backViet": "Khoảng cách ngang qua đường tròn qua tâm, bằng hai lần bán kính",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-86",
+    "front": "Circumference",
+    "back": "The distance around the outside of a circle",
+    "backViet": "Khoảng cách xung quanh bên ngoài đường tròn",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-87",
+    "front": "Sequence",
+    "back": "A set of numbers or objects that follow a pattern or rule",
+    "backViet": "Tập hợp các số hoặc đối tượng tuân theo một mẫu hoặc quy tắc",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["patterns", "math-g4"]
+  },
+  {
+    "id": "fc-88",
+    "front": "Pattern",
+    "back": "A repeated arrangement of numbers, shapes, or colors",
+    "backViet": "Sự sắp xếp lặp lại của số, hình dạng hoặc màu sắc",
+    "subject": "Mathematics",
+    "grade": 3,
+    "tags": ["patterns", "math-g3"]
+  },
+  {
+    "id": "fc-89",
+    "front": "Variable",
+    "back": "A symbol, usually a letter, that represents an unknown number",
+    "backViet": "Ký hiệu, thường là chữ cái, đại diện cho một số chưa biết",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["algebra", "math-g5"]
+  },
+  {
+    "id": "fc-90",
+    "front": "Equation",
+    "back": "A mathematical statement showing that two expressions are equal, with an = sign",
+    "backViet": "Phát biểu toán học cho thấy hai biểu thức bằng nhau, với dấu =",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["algebra", "math-g5"]
+  },
+  {
+    "id": "fc-91",
+    "front": "Climate",
+    "back": "The average weather conditions in an area over a long period of time",
+    "backViet": "Điều kiện thời tiết trung bình trong một khu vực trong thời gian dài",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["climate", "geography"]
+  },
+  {
+    "id": "fc-92",
+    "front": "Weather",
+    "back": "The condition of the atmosphere at a particular place and time",
+    "backViet": "Tình trạng khí quyển tại một nơi và thời điểm cụ thể",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["weather", "science-g4"]
+  },
+  {
+    "id": "fc-93",
+    "front": "Atmosphere",
+    "back": "The layer of gases surrounding the Earth",
+    "backViet": "Lớp khí bao quanh Trái Đất",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["earth-science", "science-g5"]
+  },
+  {
+    "id": "fc-94",
+    "front": "Erosion",
+    "back": "The process of wearing away rocks and soil by wind, water, or ice",
+    "backViet": "Quá trình mài mòn đá và đất do gió, nước hoặc băng",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["earth-science", "science-g4"]
+  },
+  {
+    "id": "fc-95",
+    "front": "Sediment",
+    "back": "Small pieces of rock, sand, or soil carried by water or wind",
+    "backViet": "Mảnh nhỏ của đá, cát hoặc đất được nước hoặc gió mang đi",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["earth-science", "science-g4"]
+  },
+  {
+    "id": "fc-96",
+    "front": "Fossil",
+    "back": "The preserved remains or traces of ancient plants or animals",
+    "backViet": "Phần còn lại được bảo tồn hoặc dấu vết của thực vật hoặc động vật cổ đại",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["fossils", "science-g5"]
+  },
+  {
+    "id": "fc-97",
+    "front": "Extinct",
+    "back": "When a species of plant or animal no longer exists on Earth",
+    "backViet": "Khi một loài thực vật hoặc động vật không còn tồn tại trên Trái Đất",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["evolution", "science-g4"]
+  },
+  {
+    "id": "fc-98",
+    "front": "Adaptation",
+    "back": "A characteristic that helps an organism survive in its environment",
+    "backViet": "Đặc điểm giúp sinh vật sống sót trong môi trường của nó",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["adaptation", "science-g5"]
+  },
+  {
+    "id": "fc-99",
+    "front": "Camouflage",
+    "back": "The ability of an animal to blend in with its surroundings for protection",
+    "backViet": "Khả năng của động vật hòa vào môi trường xung quanh để bảo vệ",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["adaptation", "science-g4"]
+  },
+  {
+    "id": "fc-100",
+    "front": "Migration",
+    "back": "The seasonal movement of animals from one place to another",
+    "backViet": "Sự di chuyển theo mùa của động vật từ nơi này đến nơi khác",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["animal-behavior", "science-g4"]
+  },
+  {
+    "id": "fc-101",
+    "front": "Metamorphosis",
+    "back": "The process of transformation from an immature form to an adult form",
+    "backViet": "Quá trình biến đổi từ dạng chưa trưởng thành sang dạng trưởng thành",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["life-cycle", "science-g5"]
+  },
+  {
+    "id": "fc-102",
+    "front": "Camouflage",
+    "back": "The ability of an animal to blend in with its surroundings",
+    "backViet": "Khả năng của động vật hòa mình vào môi trường xung quanh",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["adaptation", "science-g4"]
+  },
+  {
+    "id": "fc-103",
+    "front": "Herbivore",
+    "back": "An animal that eats only plants",
+    "backViet": "Động vật chỉ ăn thực vật",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["food-chain", "science-g4"]
+  },
+  {
+    "id": "fc-104",
+    "front": "Carnivore",
+    "back": "An animal that eats only meat",
+    "backViet": "Động vật chỉ ăn thịt",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["food-chain", "science-g4"]
+  },
+  {
+    "id": "fc-105",
+    "front": "Omnivore",
+    "back": "An animal that eats both plants and animals",
+    "backViet": "Động vật ăn cả thực vật và động vật",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["food-chain", "science-g4"]
+  },
+  {
+    "id": "fc-106",
+    "front": "Predator",
+    "back": "An animal that hunts and eats other animals",
+    "backViet": "Động vật săn mồi và ăn động vật khác",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["food-chain", "science-g4"]
+  },
+  {
+    "id": "fc-107",
+    "front": "Prey",
+    "back": "An animal that is hunted and eaten by other animals",
+    "backViet": "Động vật bị săn bắt và ăn bởi động vật khác",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["food-chain", "science-g4"]
+  },
+  {
+    "id": "fc-108",
+    "front": "Producer",
+    "back": "An organism that makes its own food, usually a plant",
+    "backViet": "Sinh vật tự tạo thức ăn, thường là thực vật",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["food-chain", "science-g5"]
+  },
+  {
+    "id": "fc-109",
+    "front": "Consumer",
+    "back": "An organism that eats other organisms for food",
+    "backViet": "Sinh vật ăn sinh vật khác để lấy thức ăn",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["food-chain", "science-g5"]
+  },
+  {
+    "id": "fc-110",
+    "front": "Decomposer",
+    "back": "An organism that breaks down dead plants and animals",
+    "backViet": "Sinh vật phân hủy động thực vật chết",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["food-chain", "science-g5"]
+  },
+  {
+    "id": "fc-111",
+    "front": "Vertebrate",
+    "back": "An animal with a backbone",
+    "backViet": "Động vật có xương sống",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["classification", "science-g5"]
+  },
+  {
+    "id": "fc-112",
+    "front": "Invertebrate",
+    "back": "An animal without a backbone",
+    "backViet": "Động vật không có xương sống",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["classification", "science-g5"]
+  },
+  {
+    "id": "fc-113",
+    "front": "Mammal",
+    "back": "A warm-blooded animal that feeds milk to its young",
+    "backViet": "Động vật máu nóng cho con bú",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["classification", "science-g4"]
+  },
+  {
+    "id": "fc-114",
+    "front": "Reptile",
+    "back": "A cold-blooded animal with scales that lays eggs",
+    "backViet": "Động vật máu lạnh có vảy và đẻ trứng",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["classification", "science-g4"]
+  },
+  {
+    "id": "fc-115",
+    "front": "Amphibian",
+    "back": "An animal that lives both in water and on land",
+    "backViet": "Động vật sống cả dưới nước và trên cạn",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["classification", "science-g4"]
+  },
+  {
+    "id": "fc-116",
+    "front": "Parallel",
+    "back": "Lines that never meet and are always the same distance apart",
+    "backViet": "Các đường thẳng không bao giờ gặp nhau và luôn cách đều nhau",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-117",
+    "front": "Perpendicular",
+    "back": "Lines that meet at a right angle (90 degrees)",
+    "backViet": "Các đường thẳng gặp nhau tạo góc vuông (90 độ)",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-118",
+    "front": "Symmetry",
+    "back": "When one half of an object is a mirror image of the other half",
+    "backViet": "Khi một nửa của vật thể là hình ảnh phản chiếu của nửa kia",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["geometry", "math-g4"]
+  },
+  {
+    "id": "fc-119",
+    "front": "Congruent",
+    "back": "Shapes that are exactly the same size and shape",
+    "backViet": "Các hình có cùng kích thước và hình dạng",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-120",
+    "front": "Acute Angle",
+    "back": "An angle that is less than 90 degrees",
+    "backViet": "Góc nhỏ hơn 90 độ",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["angles", "math-g5"]
+  },
+  {
+    "id": "fc-121",
+    "front": "Obtuse Angle",
+    "back": "An angle that is greater than 90 degrees but less than 180 degrees",
+    "backViet": "Góc lớn hơn 90 độ nhưng nhỏ hơn 180 độ",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["angles", "math-g5"]
+  },
+  {
+    "id": "fc-122",
+    "front": "Right Angle",
+    "back": "An angle that measures exactly 90 degrees",
+    "backViet": "Góc đúng 90 độ",
+    "subject": "Mathematics",
+    "grade": 4,
+    "tags": ["angles", "math-g4"]
+  },
+  {
+    "id": "fc-123",
+    "front": "Decimal",
+    "back": "A number that includes a decimal point",
+    "backViet": "Số có dấu thập phân",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["numbers", "math-g5"]
+  },
+  {
+    "id": "fc-124",
+    "front": "Ratio",
+    "back": "A comparison of two numbers or quantities",
+    "backViet": "Sự so sánh giữa hai số hoặc đại lượng",
+    "subject": "Mathematics",
+    "grade": 6,
+    "tags": ["ratios", "math-g6"]
+  },
+  {
+    "id": "fc-125",
+    "front": "Noun",
+    "back": "A word that names a person, place, thing, or idea",
+    "backViet": "Từ đặt tên cho người, địa điểm, vật hoặc ý tưởng",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["grammar", "english-g4"]
+  },
+  {
+    "id": "fc-126",
+    "front": "Verb",
+    "back": "A word that describes an action or state of being",
+    "backViet": "Từ mô tả hành động hoặc trạng thái",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["grammar", "english-g4"]
+  },
+  {
+    "id": "fc-127",
+    "front": "Adjective",
+    "back": "A word that describes or modifies a noun",
+    "backViet": "Từ mô tả hoặc bổ nghĩa cho danh từ",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["grammar", "english-g4"]
+  },
+  {
+    "id": "fc-128",
+    "front": "Adverb",
+    "back": "A word that describes or modifies a verb, adjective, or another adverb",
+    "backViet": "Từ mô tả hoặc bổ nghĩa cho động từ, tính từ hoặc trạng từ khác",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["grammar", "english-g5"]
+  },
+  {
+    "id": "fc-129",
+    "front": "Pronoun",
+    "back": "A word that takes the place of a noun",
+    "backViet": "Từ thay thế cho danh từ",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["grammar", "english-g4"]
+  },
+  {
+    "id": "fc-130",
+    "front": "Simile",
+    "back": "A comparison using 'like' or 'as'",
+    "backViet": "Phép so sánh sử dụng 'like' hoặc 'as'",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-131",
+    "front": "Metaphor",
+    "back": "A comparison that says one thing is another",
+    "backViet": "Phép so sánh nói một thứ là một thứ khác",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-132",
+    "front": "Alliteration",
+    "back": "The repetition of the same sound at the beginning of words",
+    "backViet": "Sự lặp lại âm thanh giống nhau ở đầu các từ",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-133",
+    "front": "Onomatopoeia",
+    "back": "A word that imitates the sound it represents",
+    "backViet": "Từ bắt chước âm thanh mà nó đại diện",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["figurative-language", "english-g5"]
+  },
+  {
+    "id": "fc-134",
+    "front": "Prefix",
+    "back": "A group of letters added to the beginning of a word to change its meaning",
+    "backViet": "Nhóm chữ cái thêm vào đầu từ để thay đổi nghĩa",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["vocabulary", "english-g5"]
+  },
+  {
+    "id": "fc-135",
+    "front": "Suffix",
+    "back": "A group of letters added to the end of a word to change its meaning",
+    "backViet": "Nhóm chữ cái thêm vào cuối từ để thay đổi nghĩa",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["vocabulary", "english-g5"]
+  },
+  {
+    "id": "fc-136",
+    "front": "Continent",
+    "back": "One of the seven large land masses on Earth",
+    "backViet": "Một trong bảy khối đất lớn trên Trái Đất",
+    "subject": "Geography",
+    "grade": 4,
+    "tags": ["world", "geography-g4"]
+  },
+  {
+    "id": "fc-137",
+    "front": "Equator",
+    "back": "An imaginary line around the middle of the Earth",
+    "backViet": "Đường tưởng tượng quanh giữa Trái Đất",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["coordinates", "geography-g5"]
+  },
+  {
+    "id": "fc-138",
+    "front": "Hemisphere",
+    "back": "Half of the Earth, divided by the equator or prime meridian",
+    "backViet": "Nửa của Trái Đất, được chia bởi xích đạo hoặc kinh tuyến gốc",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["coordinates", "geography-g5"]
+  },
+  {
+    "id": "fc-139",
+    "front": "Climate",
+    "back": "The average weather conditions in an area over a long period",
+    "backViet": "Điều kiện thời tiết trung bình ở một khu vực trong thời gian dài",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["weather", "geography-g5"]
+  },
+  {
+    "id": "fc-140",
+    "front": "Topography",
+    "back": "The physical features of an area including mountains, valleys, and rivers",
+    "backViet": "Các đặc điểm vật lý của một khu vực bao gồm núi, thung lũng và sông",
+    "subject": "Geography",
+    "grade": 6,
+    "tags": ["landforms", "geography-g6"]
+  },
+  {
+    "id": "fc-141",
+    "front": "Peninsula",
+    "back": "A piece of land surrounded by water on three sides",
+    "backViet": "Mảnh đất được bao quanh bởi nước ba mặt",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["landforms", "geography-g5"]
+  },
+  {
+    "id": "fc-142",
+    "front": "Archipelago",
+    "back": "A group of islands",
+    "backViet": "Một nhóm các đảo",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["landforms", "geography-g5"]
+  },
+  {
+    "id": "fc-143",
+    "front": "Delta",
+    "back": "A triangular area where a river meets the sea",
+    "backViet": "Vùng hình tam giác nơi sông gặp biển",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["landforms", "geography-g5"]
+  },
+  {
+    "id": "fc-144",
+    "front": "Glacier",
+    "back": "A large mass of ice that moves slowly over land",
+    "backViet": "Khối băng lớn di chuyển chậm trên đất liền",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["landforms", "geography-g5"]
+  },
+  {
+    "id": "fc-145",
+    "front": "Volcano",
+    "back": "An opening in Earth's crust where lava, ash, and gases erupt",
+    "backViet": "Lỗ mở trong vỏ Trái Đất nơi dung nham, tro bụi và khí phun ra",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["landforms", "geography-g5"]
+  },
+  {
+    "id": "fc-146",
+    "front": "Earthquake",
+    "back": "A sudden shaking of the ground caused by movement in Earth's crust",
+    "backViet": "Sự rung chuyển đột ngột của mặt đất do chuyển động trong vỏ Trái Đất",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["natural-disasters", "geography-g5"]
+  },
+  {
+    "id": "fc-147",
+    "front": "Tsunami",
+    "back": "A series of huge waves caused by underwater earthquakes",
+    "backViet": "Chuỗi sóng lớn gây ra bởi động đất dưới nước",
+    "subject": "Geography",
+    "grade": 5,
+    "tags": ["natural-disasters", "geography-g5"]
+  },
+  {
+    "id": "fc-148",
+    "front": "Erosion",
+    "back": "The wearing away of rocks and soil by water, wind, or ice",
+    "backViet": "Sự mài mòn đá và đất bởi nước, gió hoặc băng",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["earth-science", "science-g5"]
+  },
+  {
+    "id": "fc-149",
+    "front": "Weathering",
+    "back": "The breaking down of rocks by natural forces",
+    "backViet": "Sự phá vỡ đá bởi các lực tự nhiên",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["earth-science", "science-g5"]
+  },
+  {
+    "id": "fc-150",
+    "front": "Sediment",
+    "back": "Small pieces of rock, sand, or soil carried by water or wind",
+    "backViet": "Mảnh nhỏ đá, cát hoặc đất được mang đi bởi nước hoặc gió",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["earth-science", "science-g5"]
+  },
+  {
+    "id": "fc-151",
+    "front": "Fossil",
+    "back": "The remains or traces of ancient plants and animals preserved in rock",
+    "backViet": "Tàn tích hoặc dấu vết của thực vật và động vật cổ đại được bảo quản trong đá",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["earth-science", "science-g5"]
+  },
+  {
+    "id": "fc-152",
+    "front": "Matter",
+    "back": "Anything that has mass and takes up space",
+    "backViet": "Bất cứ thứ gì có khối lượng và chiếm không gian",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["chemistry", "science-g4"]
+  },
+  {
+    "id": "fc-153",
+    "front": "Solid",
+    "back": "A state of matter with a definite shape and volume",
+    "backViet": "Trạng thái vật chất có hình dạng và thể tích xác định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["states-of-matter", "science-g4"]
+  },
+  {
+    "id": "fc-154",
+    "front": "Liquid",
+    "back": "A state of matter with a definite volume but no definite shape",
+    "backViet": "Trạng thái vật chất có thể tích xác định nhưng không có hình dạng xác định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["states-of-matter", "science-g4"]
+  },
+  {
+    "id": "fc-155",
+    "front": "Gas",
+    "back": "A state of matter with no definite shape or volume",
+    "backViet": "Trạng thái vật chất không có hình dạng hoặc thể tích xác định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["states-of-matter", "science-g4"]
+  },
+  {
+    "id": "fc-156",
+    "front": "Mixture",
+    "back": "Two or more substances combined together but not chemically bonded",
+    "backViet": "Hai hoặc nhiều chất kết hợp với nhau nhưng không liên kết hóa học",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["chemistry", "science-g5"]
+  },
+  {
+    "id": "fc-157",
+    "front": "Solution",
+    "back": "A mixture where one substance is dissolved in another",
+    "backViet": "Hỗn hợp trong đó một chất được hòa tan trong chất khác",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["chemistry", "science-g5"]
+  },
+  {
+    "id": "fc-158",
+    "front": "Dissolve",
+    "back": "To mix completely with a liquid and form a solution",
+    "backViet": "Trộn hoàn toàn với chất lỏng và tạo thành dung dịch",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["chemistry", "science-g4"]
+  },
+  {
+    "id": "fc-159",
+    "front": "Energy",
+    "back": "The ability to do work or cause change",
+    "backViet": "Khả năng thực hiện công việc hoặc gây ra thay đổi",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["physics", "science-g4"]
+  },
+  {
+    "id": "fc-160",
+    "front": "Kinetic Energy",
+    "back": "Energy of motion",
+    "backViet": "Năng lượng của chuyển động",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["physics", "science-g5"]
+  },
+  {
+    "id": "fc-161",
+    "front": "Potential Energy",
+    "back": "Stored energy that an object has due to its position",
+    "backViet": "Năng lượng dự trữ mà vật có do vị trí của nó",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["physics", "science-g5"]
+  },
+  {
+    "id": "fc-162",
+    "front": "Force",
+    "back": "A push or pull on an object",
+    "backViet": "Lực đẩy hoặc kéo tác động lên vật thể",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["physics", "science-g4"]
+  },
+  {
+    "id": "fc-163",
+    "front": "Friction",
+    "back": "A force that opposes motion between two surfaces",
+    "backViet": "Lực chống lại chuyển động giữa hai bề mặt",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["physics", "science-g5"]
+  },
+  {
+    "id": "fc-164",
+    "front": "Gravity",
+    "back": "A force that pulls objects toward each other",
+    "backViet": "Lực kéo các vật thể về phía nhau",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["physics", "science-g4"]
+  },
+  {
+    "id": "fc-165",
+    "front": "Magnetism",
+    "back": "A force that attracts or repels certain materials",
+    "backViet": "Lực hút hoặc đẩy một số vật liệu nhất định",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["physics", "science-g4"]
+  },
+  {
+    "id": "fc-166",
+    "front": "Circuit",
+    "back": "A complete path through which electricity can flow",
+    "backViet": "Đường dẫn hoàn chỉnh mà điện có thể chạy qua",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["electricity", "science-g5"]
+  },
+  {
+    "id": "fc-167",
+    "front": "Conductor",
+    "back": "A material that allows electricity or heat to pass through easily",
+    "backViet": "Vật liệu cho phép điện hoặc nhiệt đi qua dễ dàng",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["electricity", "science-g5"]
+  },
+  {
+    "id": "fc-168",
+    "front": "Insulator",
+    "back": "A material that does not allow electricity or heat to pass through easily",
+    "backViet": "Vật liệu không cho phép điện hoặc nhiệt đi qua dễ dàng",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["electricity", "science-g5"]
+  },
+  {
+    "id": "fc-169",
+    "front": "Reflection",
+    "back": "The bouncing back of light from a surface",
+    "backViet": "Sự phản xạ ánh sáng từ bề mặt",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["light", "science-g5"]
+  },
+  {
+    "id": "fc-170",
+    "front": "Refraction",
+    "back": "The bending of light as it passes from one material to another",
+    "backViet": "Sự khúc xạ ánh sáng khi nó đi qua từ vật liệu này sang vật liệu khác",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["light", "science-g5"]
+  },
+  {
+    "id": "fc-171",
+    "front": "Transparent",
+    "back": "Allowing light to pass through so objects can be seen clearly",
+    "backViet": "Cho phép ánh sáng đi qua để có thể nhìn thấy vật thể rõ ràng",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["light", "science-g4"]
+  },
+  {
+    "id": "fc-172",
+    "front": "Opaque",
+    "back": "Not allowing light to pass through",
+    "backViet": "Không cho phép ánh sáng đi qua",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["light", "science-g4"]
+  },
+  {
+    "id": "fc-173",
+    "front": "Translucent",
+    "back": "Allowing some light to pass through but not clearly",
+    "backViet": "Cho phép một số ánh sáng đi qua nhưng không rõ ràng",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["light", "science-g4"]
+  },
+  {
+    "id": "fc-174",
+    "front": "Pitch",
+    "back": "How high or low a sound is",
+    "backViet": "Âm thanh cao hay thấp đến mức nào",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["sound", "science-g5"]
+  },
+  {
+    "id": "fc-175",
+    "front": "Volume",
+    "back": "How loud or soft a sound is",
+    "backViet": "Âm thanh to hay nhỏ đến mức nào",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["sound", "science-g5"]
+  },
+  {
+    "id": "fc-176",
+    "front": "Vibration",
+    "back": "A rapid back-and-forth movement that produces sound",
+    "backViet": "Chuyển động qua lại nhanh tạo ra âm thanh",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["sound", "science-g4"]
+  },
+  {
+    "id": "fc-177",
+    "front": "Solar System",
+    "back": "The sun and all the objects that orbit around it",
+    "backViet": "Mặt trời và tất cả các vật thể quay quanh nó",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-178",
+    "front": "Planet",
+    "back": "A large object that orbits a star",
+    "backViet": "Vật thể lớn quay quanh một ngôi sao",
+    "subject": "Science",
+    "grade": 4,
+    "tags": ["space", "science-g4"]
+  },
+  {
+    "id": "fc-179",
+    "front": "Orbit",
+    "back": "The path an object takes as it moves around another object in space",
+    "backViet": "Đường đi của vật thể khi di chuyển quanh vật thể khác trong không gian",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-180",
+    "front": "Rotation",
+    "back": "The spinning of an object on its axis",
+    "backViet": "Sự quay của vật thể quanh trục của nó",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-181",
+    "front": "Revolution",
+    "back": "The movement of one object around another object",
+    "backViet": "Chuyển động của một vật thể quanh vật thể khác",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-182",
+    "front": "Phase",
+    "back": "The different shapes of the moon as seen from Earth",
+    "backViet": "Các hình dạng khác nhau của mặt trăng khi nhìn từ Trái Đất",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-183",
+    "front": "Eclipse",
+    "back": "When one object in space blocks the light from another",
+    "backViet": "Khi một vật thể trong không gian chặn ánh sáng từ vật thể khác",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-184",
+    "front": "Constellation",
+    "back": "A group of stars that form a pattern in the sky",
+    "backViet": "Nhóm sao tạo thành một hình mẫu trên bầu trời",
+    "subject": "Science",
+    "grade": 5,
+    "tags": ["space", "science-g5"]
+  },
+  {
+    "id": "fc-185",
+    "front": "Variable",
+    "back": "A symbol that represents a number in mathematics",
+    "backViet": "Ký hiệu đại diện cho một số trong toán học",
+    "subject": "Mathematics",
+    "grade": 6,
+    "tags": ["algebra", "math-g6"]
+  },
+  {
+    "id": "fc-186",
+    "front": "Equation",
+    "back": "A mathematical statement that two expressions are equal",
+    "backViet": "Phát biểu toán học rằng hai biểu thức bằng nhau",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["algebra", "math-g5"]
+  },
+  {
+    "id": "fc-187",
+    "front": "Inequality",
+    "back": "A mathematical statement that compares two expressions using >, <, ≥, or ≤",
+    "backViet": "Phát biểu toán học so sánh hai biểu thức sử dụng >, <, ≥, hoặc ≤",
+    "subject": "Mathematics",
+    "grade": 6,
+    "tags": ["algebra", "math-g6"]
+  },
+  {
+    "id": "fc-188",
+    "front": "Mean",
+    "back": "The average of a set of numbers",
+    "backViet": "Trung bình của một tập hợp các số",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-189",
+    "front": "Median",
+    "back": "The middle number in a set of ordered numbers",
+    "backViet": "Số ở giữa trong tập hợp các số được sắp xếp",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-190",
+    "front": "Mode",
+    "back": "The number that appears most often in a set of data",
+    "backViet": "Số xuất hiện nhiều nhất trong tập dữ liệu",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-191",
+    "front": "Range",
+    "back": "The difference between the highest and lowest numbers in a set",
+    "backViet": "Sự khác biệt giữa số cao nhất và thấp nhất trong tập hợp",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["statistics", "math-g5"]
+  },
+  {
+    "id": "fc-192",
+    "front": "Probability",
+    "back": "The likelihood that an event will occur",
+    "backViet": "Khả năng một sự kiện sẽ xảy ra",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["probability", "math-g5"]
+  },
+  {
+    "id": "fc-193",
+    "front": "Coordinate",
+    "back": "A pair of numbers used to locate a point on a grid",
+    "backViet": "Cặp số dùng để xác định vị trí một điểm trên lưới",
+    "subject": "Mathematics",
+    "grade": 5,
+    "tags": ["geometry", "math-g5"]
+  },
+  {
+    "id": "fc-194",
+    "front": "Protagonist",
+    "back": "The main character in a story",
+    "backViet": "Nhân vật chính trong câu chuyện",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["literature", "english-g5"]
+  },
+  {
+    "id": "fc-195",
+    "front": "Antagonist",
+    "back": "The character who opposes the protagonist",
+    "backViet": "Nhân vật đối lập với nhân vật chính",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["literature", "english-g5"]
+  },
+  {
+    "id": "fc-196",
+    "front": "Setting",
+    "back": "The time and place where a story occurs",
+    "backViet": "Thời gian và địa điểm câu chuyện xảy ra",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["literature", "english-g4"]
+  },
+  {
+    "id": "fc-197",
+    "front": "Plot",
+    "back": "The sequence of events in a story",
+    "backViet": "Chuỗi sự kiện trong câu chuyện",
+    "subject": "English",
+    "grade": 4,
+    "tags": ["literature", "english-g4"]
+  },
+  {
+    "id": "fc-198",
+    "front": "Theme",
+    "back": "The main idea or message of a story",
+    "backViet": "Ý tưởng chính hoặc thông điệp của câu chuyện",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["literature", "english-g5"]
+  },
+  {
+    "id": "fc-199",
+    "front": "Conflict",
+    "back": "The problem or struggle in a story",
+    "backViet": "Vấn đề hoặc xung đột trong câu chuyện",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["literature", "english-g5"]
+  },
+  {
+    "id": "fc-200",
+    "front": "Resolution",
+    "back": "The solution to the conflict in a story",
+    "backViet": "Giải pháp cho xung đột trong câu chuyện",
+    "subject": "English",
+    "grade": 5,
+    "tags": ["literature", "english-g5"]
+  }
+]

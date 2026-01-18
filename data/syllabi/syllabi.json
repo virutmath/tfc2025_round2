@@ -1,0 +1,165 @@
+[
+  {
+    "id": "syllabus-1",
+    "title": "Science Grade 5 - Unit 1: The Water Cycle",
+    "subject": "Science",
+    "grade": 5,
+    "year": 2024,
+    "uploadedBy": "Thầy Minh Khang",
+    "downloads": 245,
+    "views": 1200,
+    "topics": [
+      "Evaporation",
+      "Condensation",
+      "Precipitation",
+      "Water Cycle",
+      "Cloud Formation"
+    ],
+    "keyVocabulary": [
+      "evaporation",
+      "condensation",
+      "precipitation",
+      "water cycle",
+      "atmosphere",
+      "vapor",
+      "moisture"
+    ]
+  },
+  {
+    "id": "syllabus-2",
+    "title": "English Grade 5 - Vocabulary & Grammar Unit 2",
+    "subject": "English",
+    "grade": 5,
+    "year": 2024,
+    "uploadedBy": "Cô Bảo Ngọc",
+    "downloads": 152,
+    "views": 2400,
+    "topics": [
+      "Past Tense",
+      "Present Perfect",
+      "Adjectives",
+      "Adverbs",
+      "Word Formation"
+    ],
+    "keyVocabulary": [
+      "past tense",
+      "present perfect",
+      "adjective",
+      "adverb",
+      "suffix",
+      "prefix",
+      "vocabulary"
+    ]
+  },
+  {
+    "id": "syllabus-3",
+    "title": "Mathematics Grade 5 - Fractions & Decimals",
+    "subject": "Mathematics",
+    "grade": 5,
+    "year": 2024,
+    "uploadedBy": "Thầy Toán Học",
+    "downloads": 189,
+    "views": 1850,
+    "topics": [
+      "Fractions",
+      "Decimals",
+      "Percentages",
+      "Equivalent Fractions",
+      "Converting Fractions"
+    ],
+    "keyVocabulary": [
+      "fraction",
+      "numerator",
+      "denominator",
+      "decimal",
+      "percentage",
+      "equivalent",
+      "convert"
+    ]
+  },
+  {
+    "id": "syllabus-4",
+    "title": "Science Grade 4 - Photosynthesis & Plants",
+    "subject": "Science",
+    "grade": 4,
+    "year": 2023,
+    "uploadedBy": "Thầy Minh Khang",
+    "downloads": 320,
+    "views": 3100,
+    "topics": [
+      "Photosynthesis",
+      "Plant Parts",
+      "Chlorophyll",
+      "Glucose Production",
+      "Oxygen Release"
+    ],
+    "keyVocabulary": [
+      "photosynthesis",
+      "chlorophyll",
+      "glucose",
+      "leaf",
+      "stem",
+      "root",
+      "sunlight",
+      "oxygen",
+      "carbon dioxide"
+    ]
+  },
+  {
+    "id": "syllabus-5",
+    "title": "English Grade 4 - Basic Conversation & Writing",
+    "subject": "English",
+    "grade": 4,
+    "year": 2023,
+    "uploadedBy": "Cô Bảo Ngọc",
+    "downloads": 234,
+    "views": 2700,
+    "topics": [
+      "Greetings",
+      "Daily Activities",
+      "Family Members",
+      "Simple Sentences",
+      "Question Formation"
+    ],
+    "keyVocabulary": [
+      "hello",
+      "goodbye",
+      "mother",
+      "father",
+      "sister",
+      "brother",
+      "school",
+      "friend",
+      "activity"
+    ]
+  },
+  {
+    "id": "syllabus-6",
+    "title": "Mathematics Grade 4 - Basic Operations & Shapes",
+    "subject": "Mathematics",
+    "grade": 4,
+    "year": 2023,
+    "uploadedBy": "Thầy Toán Học",
+    "downloads": 198,
+    "views": 2200,
+    "topics": [
+      "Addition & Subtraction",
+      "Multiplication & Division",
+      "Shapes",
+      "Geometry",
+      "Area & Perimeter"
+    ],
+    "keyVocabulary": [
+      "addition",
+      "subtraction",
+      "multiplication",
+      "division",
+      "triangle",
+      "square",
+      "rectangle",
+      "circle",
+      "perimeter",
+      "area"
+    ]
+  }
+]

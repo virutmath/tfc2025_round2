@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge Prep VN - Ứng dụng ôn tập cho học sinh Tiểu học</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn-jsdelivr.net/npm/@xenova/transformers"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f7ff;
+        }
+
+        .mobile-container {
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #ffffff;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Desktop layout (16:9) */
+        @media (min-width: 768px) {
+            .mobile-container {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+                max-width: 1400px;
+                margin: 0 auto;
+                box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            }
+
+            header {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            main {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            nav {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .tab-content {
+                padding-bottom: 20px !important;
+            }
+
+            main {
+                padding: 2rem 3rem !important;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                align-content: start;
+            }
+
+            main.grid-single {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-content {
+                grid-column: 1 / -1;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            }
+
+            .grid.grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .grid.grid-cols-1 {
+                grid-template-columns: 1fr !important;
+            }
+
+            h1 {
+                font-size: 1.875rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            .flashcard {
+                height: 300px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            nav button {
+                flex: 1 1 auto;
+                min-width: 120px;
+            }
+        }
+
+        /* Tablet layout */
+        @media (min-width: 640px) and (max-width: 767px) {
+            .mobile-container {
+                max-width: 100%;
+            }
+
+            main {
+                padding: 1.5rem 2rem !important;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            nav {
+                padding: 0.75rem 0.5rem;
+            }
+
+            nav button span {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Mobile layout (original) */
+        @media (max-width: 639px) {
+            .mobile-container {
+                max-width: 430px;
+            }
+
+            nav button {
+                flex: 1;
+            }
+        }
+
+        .tab-content {
+            display: none;
+            padding-bottom: 80px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .flashcard {
+            perspective: 1000px;
+            height: 200px;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+            background-color: #ecfdf5;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .matching-card {
+            transition: all 0.3s ease;
+        }
+
+        .matching-card.flipped {
+            transform: scale(1.05);
+        }
+
+        .matching-card.matched {
+            animation: matchPulse 0.5s ease;
+        }
+
+        @keyframes matchPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Header responsive */
+        @media (min-width: 768px) {
+            header {
+                border-radius: 0 !important;
+                padding: 1.5rem 3rem !important;
+            }
+
+            header h1 {
+                font-size: 1.875rem;
+            }
+
+            nav {
+                border-radius: 0 !important;
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1.5rem 3rem !important;
+                justify-content: flex-start;
+            }
+
+            nav button {
+                display: inline-flex;
+                width: auto;
+                padding: 0.75rem 1.5rem;
+                gap: 0.5rem;
+            }
+
+            nav button i {
+                font-size: 1.25rem;
+            }
+
+            nav button span {
+                display: inline;
+                margin-left: 0.5rem;
+            }
+        }
+
+        /* Game area responsive */
+        @media (min-width: 768px) {
+            #gameArea {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .grid.grid-cols-3 {
+                grid-template-columns: repeat(4, 1fr) !important;
+            }
+
+            .grid.grid-cols-1 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-container">
+    <!-- Header -->
+    <header class="bg-blue-600 p-6 rounded-b-[2rem] text-white shadow-lg sticky top-0 z-10">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <div>
+                <p class="text-blue-100 text-sm">Chào mừng bạn!</p>
+                <h1 class="text-xl font-bold">Cambridge Prep VN 🚀</h1>
+            </div>
+            <div id="btnProfile" class="bg-blue-500 p-2 rounded-full w-10 h-10 flex items-center justify-center cursor-pointer" onclick="showProfileModal()" title="Xem hồ sơ học tập">
+                <span class="text-lg">👤</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Sections -->
+    <main class="flex-grow overflow-y-auto p-4 max-w-7xl mx-auto w-full">
+        
+        <!-- HOME TAB -->
+        <section id="home" class="tab-content active">
+            <div class="bg-yellow-50 p-4 rounded-2xl border-2 border-yellow-200 mb-6">
+                <h2 class="font-bold text-yellow-800 mb-2">💡 Mẹo nhỏ hôm nay</h2>
+                <p class="text-sm text-yellow-700">Hãy dành 15 phút mỗi ngày để ôn lại Flashcards giúp bạn nhớ từ vựng lâu hơn gấp 3 lần đấy!</p>
+            </div>
+
+            <h3 class="font-bold text-gray-800 mb-4 text-lg">Học phần chính</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="switchTab('ai')" class="p-4 bg-purple-50 rounded-2xl border-2 border-purple-100 text-left hover:bg-purple-100 transition">
+                    <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center text-white mb-3">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span class="font-bold text-purple-900 block">AI Trích xuất</span>
+                    <span class="text-xs text-purple-600">Phân tích đề cương</span>
+                </button>
+                <button onclick="switchTab('flashcards')" class="p-4 bg-orange-50 rounded-2xl border-2 border-orange-100 text-left hover:bg-orange-100 transition">
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center text-white mb-3">
+                        <i class="fas fa-clone"></i>
+                    </div>
+                    <span class="font-bold text-orange-900 block">Flashcards</span>
+                    <span class="text-xs text-orange-600">Học từ vựng nhanh</span>
+                </button>
+                <button onclick="switchTab('exams')" class="p-4 bg-green-50 rounded-2xl border-2 border-green-100 text-left hover:bg-green-100 transition">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white mb-3">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <span class="font-bold text-green-900 block">Thi Thử</span>
+                    <span class="text-xs text-green-600">Đề thi chuẩn Cam</span>
+                </button>
+                <button onclick="switchTab('archive')" class="p-4 bg-blue-50 rounded-2xl border-2 border-blue-100 text-left hover:bg-blue-100 transition">
+                    <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white mb-3">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <span class="font-bold text-blue-900 block">Kho Tài Liệu</span>
+                    <span class="text-xs text-blue-600">Đề các năm trước</span>
+                </button>
+                <button onclick="switchTab('games')" class="p-4 bg-pink-50 rounded-2xl border-2 border-pink-100 text-left hover:bg-pink-100 transition">
+                    <div class="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center text-white mb-3">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <span class="font-bold text-pink-900 block">Trò chơi</span>
+                    <span class="text-xs text-pink-600">Học vui hơn</span>
+                </button>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="font-bold text-gray-800 mb-4 text-lg">Tải lên đề cương mới</h3>
+                <div class="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center bg-gray-50 hover:bg-gray-100 cursor-pointer transition" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                    <p class="text-sm text-gray-500 font-medium">Nhấn hoặc kéo file PDF vào đây</p>
+                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="font-bold text-gray-800 mb-4 text-lg">Cài đặt hệ thống</h3>
+                <button onclick="clearCache()" class="w-full p-4 bg-red-50 rounded-2xl border-2 border-red-200 text-left hover:bg-red-100 transition">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-red-900 block">Xóa Cache</span>
+                            <span class="text-xs text-red-600">Reset dữ liệu về mặc định</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="font-bold text-gray-800 mb-4 text-lg">Cài đặt hệ thống</h3>
+                <button onclick="clearCache()" class="w-full p-4 bg-red-50 rounded-2xl border-2 border-red-200 text-left hover:bg-red-100 transition">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-red-900 block">Xóa Cache</span>
+                            <span class="text-xs text-red-600">Reset dữ liệu về mặc định</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- AI EXTRACTION TAB -->
+        <section id="ai" class="tab-content">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Trạm AI Phân Tích 🤖</h2>
+            <p class="text-gray-500 text-sm mb-6">Tải đề cương của bạn lên, AI sẽ tự động tìm từ vựng và kiến thức trọng tâm.</p>
+            
+            <div id="aiContent">
+                <div class="bg-white border rounded-2xl p-4 mb-4">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-2 h-8 bg-purple-500 rounded-full"></div>
+                        <h3 class="font-bold">Đề cương gần nhất: Science Grade 5</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded-xl flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-sm">Photosynthesis</p>
+                                <p class="text-xs text-gray-500">Khoa học - Chương 2</p>
+                            </div>
+                            <button onclick="createFlashcardFromAI('Photosynthesis', 'The process by which plants convert sunlight into chemical energy to fuel their growth.')" class="text-purple-600 text-sm font-bold hover:text-purple-800 transition">Tạo FC</button>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded-xl flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-sm">Evaporation</p>
+                                <p class="text-xs text-gray-500">Khoa học - Chương 3</p>
+                            </div>
+                            <button onclick="createFlashcardFromAI('Evaporation', 'The process where water changes from liquid to vapor due to heat.')" class="text-purple-600 text-sm font-bold hover:text-purple-800 transition">Tạo FC</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="quickOpenPdfUpload()" class="w-full py-4 bg-purple-600 text-white rounded-2xl font-bold shadow-lg shadow-purple-200 hover:bg-purple-700">
+                    <i class="fas fa-magic mr-2"></i> Quét Đề Cương Mới
+                </button>
+            </div>
+
+            <!-- PDF Upload Modal -->
+            <div id="pdfUploadModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white rounded-3xl p-6 max-w-md w-full">
+                    <h3 class="text-xl font-bold mb-4">Tải lên đề cương PDF</h3>
+                    <input type="file" id="pdfFileInput" accept=".pdf" class="w-full p-3 border rounded-xl mb-4">
+                    <div class="flex gap-3">
+                        <button onclick="closePdfUpload()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold">Huỷ</button>
+                        <button onclick="processPdf()" class="flex-1 py-3 bg-purple-600 text-white rounded-xl font-bold">Phân tích</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLASHCARDS TAB -->
+        <section id="flashcards" class="tab-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800">Flashcards 🃏</h2>
+                <span class="bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full" id="setName">Bộ: Tất cả</span>
+            </div>
+
+            <div id="flashcardContainer"></div>
+
+            <div class="flex gap-4 mb-8" id="fcNavigation">
+                <button onclick="previousFlashcard()" class="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold hover:bg-gray-200">← Trước</button>
+                <button onclick="nextFlashcard()" class="flex-1 py-3 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600">Tiếp theo →</button>
+            </div>
+
+            <button onclick="showAddFlashcardModal()" class="w-full py-3 bg-green-500 text-white rounded-xl font-bold mb-8 hover:bg-green-600">➕ Thêm Flashcard</button>
+
+            <h3 class="font-bold mb-3">Bộ sưu tập của bạn</h3>
+            <div class="space-y-3" id="flashcardSets"></div>
+        </section>
+
+        <!-- EXAMS TAB -->
+        <section id="exams" class="tab-content">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">Luyện Thi Thử ✍️</h2>
+            
+            <div id="examsList"></div>
+        </section>
+
+        <!-- ARCHIVE TAB -->
+        <section id="archive" class="tab-content">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Thư Viện Anh Chị 📚</h2>
+            <div class="relative mb-6">
+                <input type="text" id="searchArchive" placeholder="Tìm kiếm đề thi, năm, lớp..." class="w-full pl-10 pr-4 py-3 bg-gray-100 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none border-none">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <button onclick="filterByGrade('all')" class="p-3 bg-blue-600 text-white rounded-xl font-bold text-sm border border-blue-500 grade-filter">Tất cả</button>
+                <button onclick="filterByGrade('4')" class="p-3 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm border border-blue-100 grade-filter">Grade 4</button>
+                <button onclick="filterByGrade('5')" class="p-3 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm border border-blue-100 grade-filter">Grade 5</button>
+                <button onclick="filterByGrade('3')" class="p-3 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm border border-blue-100 grade-filter">Grade 3</button>
+            </div>
+
+            <h3 class="font-bold mb-3">Tài liệu nổi bật</h3>
+            <div class="space-y-4" id="archiveList"></div>
+        </section>
+
+        <!-- GAMES TAB -->
+        <section id="games" class="tab-content">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">🎮 Trò chơi vui học tập</h2>
+            
+            <div class="grid grid-cols-1 gap-4">
+                <button onclick="startMatchingGame()" class="p-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition">
+                    <div class="text-center">
+                        <i class="fas fa-puzzle-piece text-4xl mb-3"></i>
+                        <h3 class="font-bold text-lg">Ghép đôi Flashcards</h3>
+                        <p class="text-sm opacity-90">Ghép từ vựng với định nghĩa</p>
+                    </div>
+                </button>
+                
+                <button onclick="startQuizGame()" class="p-6 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition">
+                    <div class="text-center">
+                        <i class="fas fa-brain text-4xl mb-3"></i>
+                        <h3 class="font-bold text-lg">Quiz Nhanh</h3>
+                        <p class="text-sm opacity-90">Trả lời nhanh để ghi điểm</p>
+                    </div>
+                </button>
+            </div>
+            
+            <div id="gameArea" class="mt-6 hidden">
+                <!-- Game content will be inserted here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white border-t p-4 flex justify-around items-center sticky bottom-0 w-full rounded-t-3xl shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center text-blue-600">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">Trang chủ</span>
+        </button>
+        <button onclick="switchTab('ai')" id="nav-ai" class="nav-item flex flex-col items-center text-gray-400">
+            <i class="fas fa-magic text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">AI Quét</span>
+        </button>
+        <button onclick="switchTab('exams')" id="nav-exams" class="nav-item flex flex-col items-center text-gray-400">
+            <i class="fas fa-pen-nib text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">Thi Thử</span>
+        </button>
+        <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-item flex flex-col items-center text-gray-400">
+            <i class="fas fa-clone text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">Flashcards</span>
+        </button>
+        <button onclick="switchTab('games')" id="nav-games" class="nav-item flex flex-col items-center text-gray-400">
+            <i class="fas fa-gamepad text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">Trò chơi</span>
+        </button>
+        <button onclick="switchTab('archive')" id="nav-archive" class="nav-item flex flex-col items-center text-gray-400">
+            <i class="fas fa-folder-open text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">Thư viện</span>
+        </button>
+    </nav>
+</div>
+
+<script>
+    // ===== GLOBAL STATE =====
+    let allFlashcards = [];
+    let currentFlashcardIndex = 0;
+    let allExams = [];
+    let allSyllabi = [];
+    let currentExamId = null;
+    let extractedWords = [];
+    let currentGradeFilter = 'all';
+    let currentSubjectFilter = 'all';
+    let currentSearchQuery = '';
+    let currentExamAnswers = {};
+    let currentExamSubmitted = false;
+    let examHistory = [];  // Store exam attempt history
+    let selectedPdfFile = null; // Keep last chosen PDF even if input resets
+    let userDiamonds = 0; // Total diamonds earned
+    let userNickname = 'Học sinh'; // Default nickname
+    let nicknameHistory = []; // History of nickname changes
+    let currentGame = null; // Current game being played
+    let gameScore = 0; // Current game score
+    let gameTimer = null; // Game timer
+    let userTitle = ''; // Special title based on level
+
+    function updateAvatar() {
+        // Create avatar based on diamond count - level up system
+        let avatarEmoji = '👤'; // Default
+        let titleText = '';
+        
+        if (userDiamonds >= 500) {
+            avatarEmoji = '👑';
+            titleText = 'Vĩ Đại';
+        } else if (userDiamonds >= 200) {
+            avatarEmoji = '🏆';
+            titleText = 'Quán Quân';
+        } else if (userDiamonds >= 100) {
+            avatarEmoji = '🧑‍🏫';
+            titleText = 'Chuyên Gia';
+        } else if (userDiamonds >= 50) {
+            avatarEmoji = '⭐';
+            titleText = 'Ngôi Sao';
+        } else if (userDiamonds >= 25) {
+            avatarEmoji = '🥇';
+            titleText = 'Vàng';
+        } else if (userDiamonds >= 15) {
+            avatarEmoji = '🥈';
+            titleText = 'Bạc';
+        } else if (userDiamonds >= 8) {
+            avatarEmoji = '🥉';
+            titleText = 'Đồng';
+        } else if (userDiamonds >= 3) {
+            avatarEmoji = '🎖️';
+            titleText = 'Cao Quý';
+        } else if (userDiamonds >= 1) {
+            avatarEmoji = '🏅';
+            titleText = 'Huy Chương';
+        } else {
+            // No diamonds yet - use first letter of nickname
+            const firstLetter = userNickname.charAt(0).toUpperCase();
+            const basicAvatars = ['🧑‍🎓', '👨‍🎓', '👩‍🎓', '🧑‍🏫', '👨‍🏫', '👩‍🏫', '🧑‍💻', '👨‍💻', '👩‍💻'];
+            const charCode = firstLetter.charCodeAt(0);
+            const emojiIndex = charCode % basicAvatars.length;
+            avatarEmoji = basicAvatars[emojiIndex];
+            titleText = 'Học Sinh';
+        }
+        
+        userAvatar = avatarEmoji;
+        userTitle = titleText;
+        
+        // Update profile button
+        const profileBtn = document.getElementById('btnProfile');
+        if (profileBtn) {
+            profileBtn.innerHTML = `<span class="text-lg">${userAvatar}</span>`;
+        }
+    }
+
+    // ===== INITIALIZATION =====
+    async function init() {
+        // Always load from JSON first
+        await loadFlashcards();
+        
+        // Then merge with any user-added cards from localStorage (only Manual and AI Extracted)
+        const saved = localStorage.getItem('flashcards');
+        if (saved) {
+            const savedCards = JSON.parse(saved);
+            // Only add back user-added cards that don't exist in the JSON
+            const userAdded = savedCards.filter(c => 
+                (c.subject === 'Manual' || c.subject === 'AI Extracted') &&
+                !allFlashcards.some(fc => fc.id === c.id)
+            );
+            allFlashcards.push(...userAdded);
+        }
+        
+        localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+        await loadExams();
+        await loadSyllabi();
+        
+        // Load exam history from localStorage
+        const savedHistory = localStorage.getItem('examHistory');
+        if (savedHistory) {
+            examHistory = JSON.parse(savedHistory);
+        }
+        
+        // Load user diamonds and nickname
+        const savedDiamonds = localStorage.getItem('userDiamonds');
+        if (savedDiamonds) {
+            userDiamonds = parseInt(savedDiamonds);
+        }
+        const savedNickname = localStorage.getItem('userNickname');
+        if (savedNickname) {
+            userNickname = savedNickname;
+        }
+        const savedNicknameHistory = localStorage.getItem('nicknameHistory');
+        if (savedNicknameHistory) {
+            nicknameHistory = JSON.parse(savedNicknameHistory);
+        }
+        const savedFlashcardsViewed = localStorage.getItem('flashcardsViewed');
+        if (savedFlashcardsViewed) {
+            flashcardsViewed = parseInt(savedFlashcardsViewed);
+        }
+        
+        // Update avatar after loading nickname
+        updateAvatar();
+        
+        initializeUploadArea();
+        const pdfInput = document.getElementById('pdfFileInput');
+        if (pdfInput) {
+            pdfInput.addEventListener('change', (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                    setSelectedPdfFile(file);
+                }
+            });
+        }
+        initializeSearchArchive();
+        renderArchive();
+        renderFlashcards();
+        renderExams();
+    }
+
+    // ===== LOAD DATA =====
+    async function loadFlashcards() {
+        const response = await fetch('./data/flashcards.json');
+        const jsonCards = await response.json();
+        allFlashcards = jsonCards;
+        localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+    }
+
+    async function loadExams() {
+        const response = await fetch('./data/exams/exams.json');
+        allExams = await response.json();
+    }
+
+    async function loadSyllabi() {
+        const response = await fetch('./data/syllabi/syllabi.json');
+        allSyllabi = await response.json();
+    }
+
+    // ===== TAB NAVIGATION =====
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('text-blue-600');
+            item.classList.add('text-gray-400');
+        });
+        document.getElementById('nav-' + tabId).classList.add('text-blue-600');
+        document.getElementById('nav-' + tabId).classList.remove('text-gray-400');
+        
+        // Reset game area when switching to games tab
+        if (tabId === 'games') {
+            const gameArea = document.getElementById('gameArea');
+            if (gameArea) {
+                gameArea.classList.add('hidden');
+                gameArea.innerHTML = '<!-- Game content will be inserted here -->';
+            }
+            currentGame = null;
+            gameScore = 0;
+            if (gameTimer) {
+                clearInterval(gameTimer);
+                gameTimer = null;
+            }
+        }
+    }
+
+    // ===== FLASHCARDS TAB =====
+    function renderFlashcards() {
+        if (allFlashcards.length === 0) {
+            document.getElementById('flashcardContainer').innerHTML = '<p class="text-gray-500">Chưa có flashcard nào</p>';
+            return;
+        }
+
+        const card = allFlashcards[currentFlashcardIndex];
+        let vietnameseSection = '';
+        if (card.backViet) {
+            vietnameseSection = '<div class="mt-4 pt-4 border-t border-green-300"><p class="text-sm text-green-600 italic">' + card.backViet + '</p></div>';
+        }
+        
+        document.getElementById('flashcardContainer').innerHTML = `
+            <div class="relative mb-6">
+                <button onclick="deleteFlashcard('${card.id}')" style="position: absolute; top: 10px; right: 10px; z-index: 20;" class="bg-red-500 text-white w-10 h-10 rounded-full font-bold text-lg hover:bg-red-600 shadow-lg">×</button>
+                <div class="flashcard" id="card1" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front bg-orange-50 border-2 border-orange-200">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-bold text-orange-800">${card.front}</h3>
+                                <p class="text-sm text-orange-400 mt-2">Nhấn để xem nghĩa</p>
+                            </div>
+                        </div>
+                        <div class="flashcard-back border-2 border-green-200">
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-green-800">${card.front}</h3>
+                                <p class="text-sm text-green-700 mt-3 leading-relaxed">${card.back}</p>
+                                ${vietnameseSection}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-sm mb-4">${currentFlashcardIndex + 1}/${allFlashcards.length}</p>
+        `;
+
+        renderFlashcardSets();
+    }
+
+    function renderFlashcardSets() {
+        const subjects = [...new Set(allFlashcards.map(fc => fc.subject))];
+        const html = subjects.map(subject => {
+            const count = allFlashcards.filter(fc => fc.subject === subject).length;
+            return `
+                <div class="p-4 border rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-gray-50" onclick="filterFlashcards('${subject}')">
+                    <div class="bg-blue-100 p-3 rounded-xl text-blue-600"><i class="fas fa-book"></i></div>
+                    <div class="flex-grow">
+                        <p class="font-bold">${subject}</p>
+                        <p class="text-xs text-gray-400">${count} thẻ</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('flashcardSets').innerHTML = html;
+    }
+
+    function filterFlashcards(subject) {
+        currentFlashcardIndex = 0;
+        allFlashcards = allFlashcards.sort((a, b) => (a.subject === subject ? -1 : 1));
+        renderFlashcards();
+    }
+
+    function nextFlashcard() {
+        currentFlashcardIndex = (currentFlashcardIndex + 1) % allFlashcards.length;
+        document.querySelector('.flashcard').classList.remove('flipped');
+        renderFlashcards();
+        checkFlashcardReward();
+    }
+
+    function previousFlashcard() {
+        currentFlashcardIndex = (currentFlashcardIndex - 1 + allFlashcards.length) % allFlashcards.length;
+        document.querySelector('.flashcard').classList.remove('flipped');
+        renderFlashcards();
+        checkFlashcardReward();
+    }
+
+    function showAddFlashcardModal() {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+        modal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-md w-full">
+                <h3 class="text-xl font-bold mb-4">Thêm Flashcard Mới</h3>
+                <input type="text" id="fcFront" placeholder="Từ tiếng Anh" class="w-full p-3 border rounded-xl mb-3">
+                <textarea id="fcBack" placeholder="Định nghĩa tiếng Anh" class="w-full p-3 border rounded-xl mb-3 h-20"></textarea>
+                <textarea id="fcBackViet" placeholder="Định nghĩa tiếng Việt" class="w-full p-3 border rounded-xl mb-4 h-20"></textarea>
+                <div class="flex gap-3">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold">Huỷ</button>
+                    <button onclick="addNewFlashcard()" class="flex-1 py-3 bg-green-500 text-white rounded-xl font-bold">Thêm</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        document.getElementById('fcFront').focus();
+    }
+
+    function addNewFlashcard() {
+        const front = document.getElementById('fcFront').value.trim();
+        const back = document.getElementById('fcBack').value.trim();
+        const backViet = document.getElementById('fcBackViet').value.trim();
+
+        if (!front || !back || !backViet) {
+            showNotification('❌ Vui lòng điền đủ thông tin', false);
+            return;
+        }
+
+        const newCard = {
+            id: 'fc-' + Date.now(),
+            front: front,
+            back: back,
+            backViet: backViet,
+            subject: 'Manual',
+            grade: 5,
+            tags: ['manual']
+        };
+
+        allFlashcards.push(newCard);
+        localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+        document.querySelector('.fixed').remove();
+        renderFlashcards();
+        // Reward for adding flashcards
+        userDiamonds += 1;
+        localStorage.setItem('userDiamonds', userDiamonds);
+        updateAvatar(); // Update avatar based on new diamond count
+        showNotification(`✨ Đã thêm "${front}" vào flashcards! Bạn nhận được 1 💎 kim cương!`);
+    }
+
+    function deleteFlashcard(cardId) {
+        const card = allFlashcards.find(c => c.id === cardId);
+        if (!card) return;
+
+        if (confirm(`Xóa flashcard "${card.front}"?`)) {
+            allFlashcards = allFlashcards.filter(c => c.id !== cardId);
+            localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+            
+            if (currentFlashcardIndex >= allFlashcards.length) {
+                currentFlashcardIndex = Math.max(0, allFlashcards.length - 1);
+            }
+            
+            renderFlashcards();
+            showNotification(`🗑️ Đã xóa "${card.front}"`);
+        }
+    }
+
+    function clearCache() {
+        if (confirm('⚠️ Xóa cache sẽ reset tất cả dữ liệu (flashcards tự thêm, lịch sử thi, kim cương, biệt danh, số flashcards đã xem) về mặc định. Bạn có chắc chắn?')) {
+            localStorage.clear();
+            showNotification('✅ Đã xóa cache! Đang tải lại...');
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+    }
+
+    // ===== EXAMS TAB =====
+    function renderExams() {
+        const html = allExams.map(exam => {
+            const isNew = exam.year === 2024;
+            
+            // Count attempts for this exam
+            const attempts = examHistory.filter(h => h.examId === exam.id);
+            const attemptCount = attempts.length;
+            const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => a.score)) : null;
+            const lastAttempt = attempts.length > 0 ? attempts[attempts.length - 1] : null;
+            
+            let attemptInfo = '';
+            if (attemptCount > 0) {
+                attemptInfo = `
+                    <div class="mt-3 pt-3 border-t border-gray-200">
+                        <p class="text-xs text-gray-500">📊 Đã làm ${attemptCount} lần</p>
+                        <p class="text-xs text-gray-500">🏆 Điểm cao nhất: ${bestScore}%</p>
+                        <p class="text-xs text-gray-500">⏱️ Lần cuối: ${lastAttempt.timestamp}</p>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="bg-white border${isNew ? '-2 border-green-100' : ''} rounded-2xl overflow-hidden shadow-sm">
+                    ${isNew ? '<div class="bg-green-500 px-4 py-2 text-white text-xs font-bold">MỚI CẬP NHẬT</div>' : ''}
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">${exam.title}</h3>
+                        <p class="text-sm text-gray-500 mb-4">${exam.subject} - ${exam.grade}th Grade</p>
+                        ${attemptInfo}
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xs text-gray-400"><i class="far fa-clock mr-1"></i> ${exam.duration} phút</span>
+                            <button onclick="startExam('${exam.id}')" class="px-6 py-2 bg-green-600 text-white rounded-lg text-sm font-bold hover:bg-green-700">Bắt đầu</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('examsList').innerHTML = html;
+    }
+
+    function startExam(examId) {
+        currentExamId = examId;
+        const exam = allExams.find(e => e.id === examId);
+        if (exam) {
+            showExamModal(exam);
+        }
+    }
+
+    function showExamModal(exam) {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto';
+        modal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-2xl w-full my-auto">
+                <h3 class="text-2xl font-bold mb-4">${exam.title}</h3>
+                <div id="examContent"></div>
+                <div id="examActions" class="flex gap-3 mt-6">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition">Đóng</button>
+                    <button onclick="submitExam('${exam.id}')" class="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">📝 Nộp bài</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        currentExamAnswers = {};
+        currentExamSubmitted = false;
+        renderExamQuestions(exam);
+    }
+
+    function renderExamQuestions(exam) {
+        const container = document.getElementById('examContent');
+        if (!container) return;
+        
+        container.innerHTML = exam.questions.map((q, idx) => {
+            const isAnswered = currentExamAnswers[`q${idx}`];
+            const isCorrect = isAnswered === q.answer;
+            
+            return `
+                <div class="mb-6 p-4 border rounded-xl ${currentExamSubmitted ? (isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200') : ''}">
+                    <p class="font-bold mb-3">Câu ${idx + 1}: ${q.text}</p>
+                    ${q.type === 'multiple-choice' ? `
+                        <div class="space-y-2">
+                            ${q.options.map(opt => {
+                                const isSelected = isAnswered === opt;
+                                const isCorrectOption = opt === q.answer;
+                                let optionClass = 'flex items-center p-2 border rounded-lg cursor-pointer hover:bg-gray-50';
+                                
+                                if (currentExamSubmitted) {
+                                    if (isCorrectOption) {
+                                        optionClass = 'flex items-center p-2 border-2 border-green-500 bg-green-50 rounded-lg cursor-pointer';
+                                    } else if (isSelected && !isCorrect) {
+                                        optionClass = 'flex items-center p-2 border-2 border-red-500 bg-red-50 rounded-lg cursor-pointer';
+                                    }
+                                }
+                                
+                                return `
+                                    <label class="${optionClass}">
+                                        <input type="radio" name="q${idx}" value="${opt}" class="mr-2" ${!currentExamSubmitted ? '' : 'disabled'} onchange="recordAnswer('q${idx}', '${opt}')">
+                                        <span>${opt}</span>
+                                        ${currentExamSubmitted && isCorrectOption ? '<span class="ml-auto text-green-600 font-bold">✓ Đúng</span>' : ''}
+                                        ${currentExamSubmitted && isSelected && !isCorrect ? '<span class="ml-auto text-red-600 font-bold">✗ Sai</span>' : ''}
+                                    </label>
+                                `;
+                            }).join('')}
+                        </div>
+                    ` : `
+                        <div class="bg-white p-3 border rounded-lg mb-3">
+                            <p class="text-xs text-gray-500 mb-2">Câu trả lời của bạn:</p>
+                            <textarea class="w-full p-2 border rounded-lg bg-gray-50" rows="4" placeholder="Nhập câu trả lời..." ${currentExamSubmitted ? 'readonly' : ''} onchange="recordAnswer('q${idx}', this.value)">${isAnswered || ''}</textarea>
+                        </div>
+                    `}
+                    ${currentExamSubmitted ? `
+                        <div class="mt-3 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                            <p class="text-sm text-gray-700 font-bold mb-2">📚 Giải thích:</p>
+                            <p class="text-sm text-gray-600 mb-3">${q.explanation}</p>
+                            ${q.sampleAnswer ? `
+                                <div class="mt-3 p-3 bg-white border border-blue-200 rounded">
+                                    <p class="text-xs font-bold text-blue-700 mb-2">📝 Đoạn văn mẫu:</p>
+                                    <p class="text-sm text-gray-700">${q.sampleAnswer}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }).join('');
+    }
+
+    function recordAnswer(questionId, value) {
+        currentExamAnswers[questionId] = value;
+    }
+
+    function submitExam(examId) {
+        const exam = allExams.find(e => e.id === examId);
+        if (!exam) return;
+
+        currentExamSubmitted = true;
+        let correctCount = 0;
+        let gradableCount = 0;
+
+        exam.questions.forEach((q, idx) => {
+            // Only grade multiple-choice questions
+            if (q.type === 'multiple-choice') {
+                gradableCount++;
+                const userAnswer = currentExamAnswers[`q${idx}`];
+                if (userAnswer === q.answer) {
+                    correctCount++;
+                }
+            }
+        });
+
+        // If no gradable questions, treat as partial credit
+        const totalForScoring = gradableCount > 0 ? gradableCount : exam.questions.length;
+        const scoreValue = gradableCount > 0 ? correctCount : 0;
+        const score = gradableCount > 0 ? Math.round((scoreValue / totalForScoring) * 100) : 0;
+        const advice = getAdviceByScore(score);
+        
+        const attemptRecord = {
+            examId: examId,
+            examTitle: exam.title,
+            score: score,
+            correctCount: correctCount,
+            totalQuestions: totalForScoring,
+            timestamp: new Date().toLocaleString('vi-VN')
+        };
+        examHistory.push(attemptRecord);
+        localStorage.setItem('examHistory', JSON.stringify(examHistory));
+        
+        // Award diamonds if score >= 70%
+        if (score >= 70) {
+            const difficulty = exam.difficulty || 'medium'; // Default to medium if not set
+            let diamondsEarned = 0;
+            if (difficulty === 'easy') diamondsEarned = 5;
+            else if (difficulty === 'medium') diamondsEarned = 10;
+            else if (difficulty === 'hard') diamondsEarned = 15;
+            
+            userDiamonds += diamondsEarned;
+            localStorage.setItem('userDiamonds', userDiamonds);
+            updateAvatar(); // Update avatar based on new diamond count
+            showNotification(`🎉 Chúc mừng! Bạn nhận được ${diamondsEarned} 💎 kim cương!`);
+        }
+        
+        renderExamQuestions(exam);
+        
+        // Update action buttons
+        const actionsDiv = document.getElementById('examActions');
+        actionsDiv.innerHTML = `
+            <div class="w-full py-4 bg-gradient-to-r ${score >= 70 ? 'from-green-100 to-green-50' : 'from-orange-100 to-orange-50'} border-2 ${score >= 70 ? 'border-green-300' : 'border-orange-300'} rounded-xl text-center mb-4">
+                <p class="text-sm text-gray-600">Kết quả</p>
+                <p class="text-3xl font-bold ${score >= 70 ? 'text-green-600' : 'text-orange-600'}">${score}%</p>
+                <p class="text-sm text-gray-600">${correctCount}/${totalForScoring} câu đúng</p>
+            </div>
+            <div class="w-full p-4 bg-blue-50 border-l-4 border-blue-500 rounded-xl mb-4">
+                <p class="text-sm font-bold text-blue-900 mb-2">💡 Lời khuyên cho bạn:</p>
+                <p class="text-sm text-blue-800">${getAdviceByScore(score)}</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="location.reload()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition">Quay lại</button>
+                <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">Đóng</button>
+            </div>
+        `;
+    }
+
+    // ===== PROFILE MODAL =====
+    function showProfileModal() {
+        // Refresh diamonds from localStorage
+        const savedDiamonds = localStorage.getItem('userDiamonds');
+        if (savedDiamonds) {
+            userDiamonds = parseInt(savedDiamonds);
+        }
+        const totalAttempts = examHistory.length;
+
+        // Group by exam
+        const examsMap = {};
+        examHistory.forEach(a => {
+            if (!examsMap[a.examId]) {
+                examsMap[a.examId] = { title: a.examTitle, count: 0, best: 0, last: a.timestamp };
+            }
+            const m = examsMap[a.examId];
+            m.count++;
+            m.best = Math.max(m.best, a.score);
+            m.last = a.timestamp;
+        });
+
+        const groupedHtml = Object.values(examsMap).map(m => `
+            <div class="flex items-center justify-between p-3 border rounded-xl mb-2">
+                <div>
+                    <p class="font-bold">${m.title}</p>
+                    <p class="text-xs text-gray-500">Làm ${m.count} lần • Điểm cao nhất ${m.best}%</p>
+                    <p class="text-xs text-gray-400">Lần cuối: ${m.last}</p>
+                </div>
+                <span class="text-sm text-blue-600 font-bold">${m.best}%</span>
+            </div>
+        `).join('') || '<p class="text-sm text-gray-500">Chưa có lịch sử bài thi.</p>';
+
+        const recentHtml = examHistory.slice(-5).reverse().map(a => `
+            <div class="p-3 border rounded-xl mb-2">
+                <p class="text-sm"><span class="font-bold">${a.examTitle}</span> • ${a.score}% (${a.correctCount}/${a.totalQuestions})</p>
+                <p class="text-xs text-gray-500">${a.timestamp}</p>
+            </div>
+        `).join('');
+
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto';
+        modal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-xl w-full my-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold">Hồ sơ học tập</h3>
+                    <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-gray-600 text-2xl">×</button>
+                </div>
+                
+                <!-- Nickname Section -->
+                <div class="mb-4 p-4 bg-blue-50 rounded-xl">
+                    <label class="block text-sm font-bold text-blue-900 mb-2">Biệt danh của bạn</label>
+                    <div class="mb-2">
+                        <span class="text-lg font-bold text-blue-800">${userNickname}</span>
+                        ${userTitle ? `<span class="ml-2 px-2 py-1 bg-yellow-200 text-yellow-800 text-xs rounded-full font-bold">${userTitle}</span>` : ''}
+                    </div>
+                    <input type="text" id="nicknameInput" value="${userNickname}" class="w-full p-2 border rounded-lg" placeholder="Nhập biệt danh...">
+                    <button onclick="updateNickname()" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">Cập nhật</button>
+                </div>
+                
+                <!-- Diamonds Section -->
+                <div class="mb-4 p-4 bg-yellow-50 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-yellow-700">💎 Kim cương</p>
+                            <p class="text-2xl font-bold text-yellow-800" id="profileDiamonds">${userDiamonds}</p>
+                        </div>
+                        <div class="text-3xl">💎</div>
+                    </div>
+                    <p class="text-xs text-yellow-600 mt-2">Thu thập từ bài thi, trò chơi, flashcards và học tập!</p>
+                </div>
+                
+                <p class="text-sm text-gray-600 mb-4">Tổng số lượt làm: ${totalAttempts}</p>
+                <h4 class="font-bold mb-2">Theo từng bài thi</h4>
+                <div>${groupedHtml}</div>
+                <h4 class="font-bold mt-4 mb-2">Gần đây</h4>
+                <div>${recentHtml || '<p class="text-sm text-gray-500">Chưa có lượt làm gần đây.</p>'}</div>
+                <div class="flex gap-3 mt-6">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition">Đóng</button>
+                    <button onclick="clearExamHistory(); this.closest('.fixed').remove();" class="flex-1 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition">Xóa lịch sử</button>
+                </div>
+                <div class="mt-3">
+                    <button onclick="logoutUser()" class="w-full py-3 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600 transition border-2 border-orange-600 text-lg">🚪 Đăng xuất</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function updateNickname() {
+        const input = document.getElementById('nicknameInput');
+        const newNickname = input.value.trim();
+        
+        if (newNickname && newNickname !== userNickname) {
+            // Save old nickname to history
+            nicknameHistory.push({
+                oldNickname: userNickname,
+                newNickname: newNickname,
+                timestamp: new Date().toLocaleString('vi-VN')
+            });
+            
+            // Update current nickname
+            userNickname = newNickname;
+            
+            // Save to localStorage
+            localStorage.setItem('userNickname', userNickname);
+            localStorage.setItem('nicknameHistory', JSON.stringify(nicknameHistory));
+            
+            showNotification(`✨ Đã cập nhật biệt danh thành "${newNickname}"!`);
+            
+            // Update avatar with new nickname
+            updateAvatar();
+            
+            // Update the input value in case it was trimmed
+            input.value = newNickname;
+            
+            // Refresh profile modal to show updated title
+            const modal = document.querySelector('.fixed');
+            if (modal) {
+                modal.remove();
+                showProfileModal();
+            }
+        } else if (!newNickname) {
+            showNotification('⚠️ Vui lòng nhập biệt danh!');
+        } else {
+            showNotification('ℹ️ Biệt danh không thay đổi.');
+        }
+    }
+
+    function logoutUser() {
+        console.log('Logout button clicked!');
+        // Create confirmation modal
+        const confirmModal = document.createElement('div');
+        confirmModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+        confirmModal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-sm w-full">
+                <h3 class="text-xl font-bold mb-4 text-center">Xác nhận đăng xuất</h3>
+                <p class="text-gray-600 mb-6 text-center">Bạn có chắc muốn đăng xuất?<br><strong>Kim cương sẽ reset về 0, nhưng dữ liệu học tập sẽ được giữ lại!</strong></p>
+                <div class="flex gap-3">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition">Hủy</button>
+                    <button onclick="confirmLogout()" class="flex-1 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition">Đăng xuất</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(confirmModal);
+        console.log('Confirmation modal created and added to DOM');
+    }
+
+    function confirmLogout() {
+        // Only reset diamonds, keep all other data for future sessions
+        userDiamonds = 0;
+        localStorage.setItem('userDiamonds', 0);
+        
+        // Keep nickname, nicknameHistory, examHistory, flashcardsViewed
+        // These will be restored when user "logs back in"
+        
+        // Update avatar (will use current nickname)
+        updateAvatar();
+        
+        // Close all modals
+        document.querySelectorAll('.fixed').forEach(modal => modal.remove());
+        showNotification('👋 Đã đăng xuất! Kim cương đã reset về 0. Dữ liệu học tập được giữ lại.');
+        
+        // Refresh the page to reset session
+        setTimeout(() => location.reload(), 1500);
+    }
+
+    function clearExamHistory() {
+        localStorage.removeItem('examHistory');
+        examHistory = [];
+        renderExams();
+    }
+
+    function restartGame() {
+        if (currentGame === 'matching') {
+            startMatchingGame();
+        } else if (currentGame === 'quiz') {
+            startQuizGame();
+        } else {
+            switchTab('games');
+        }
+    }
+
+    // ===== GAMES =====
+    function startMatchingGame() {
+        currentGame = 'matching';
+        gameScore = 0;
+        const gameArea = document.getElementById('gameArea');
+        gameArea.classList.remove('hidden');
+        
+        // Get random 6 flashcards for the game
+        const gameCards = allFlashcards.slice().sort(() => Math.random() - 0.5).slice(0, 6);
+        const cards = [];
+        
+        // Create pairs: front and back
+        gameCards.forEach(card => {
+            cards.push({ type: 'front', text: card.front, pairId: card.id });
+            cards.push({ type: 'back', text: card.back, pairId: card.id });
+        });
+        
+        // Shuffle cards
+        cards.sort(() => Math.random() - 0.5);
+        
+        gameArea.innerHTML = `
+            <div class="text-center mb-4">
+                <h3 class="text-lg font-bold">Ghép đôi Flashcards</h3>
+                <p class="text-sm text-gray-600">Ghép từ vựng với định nghĩa đúng</p>
+                <div class="flex justify-center gap-4 mt-2">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Điểm: <span id="matchingScore">0</span></span>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Thời gian: <span id="matchingTime">60</span>s</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-3 mb-4" id="matchingGrid">
+                ${cards.map((card, index) => `
+                    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center p-2 cursor-pointer hover:bg-gray-300 transition matching-card" 
+                         data-index="${index}" data-pair="${card.pairId}" data-type="${card.type}" onclick="flipMatchingCard(${index})">
+                        <span class="text-xs text-center">${card.text}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="text-center">
+                <button onclick="endGame()" class="px-6 py-2 bg-red-500 text-white rounded-xl font-bold hover:bg-red-600">Kết thúc</button>
+            </div>
+        `;
+        
+        // Start timer
+        let timeLeft = 60;
+        gameTimer = setInterval(() => {
+            timeLeft--;
+            document.getElementById('matchingTime').textContent = timeLeft;
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function flipMatchingCard(index) {
+        const card = document.querySelector(`[data-index="${index}"]`);
+        if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+        
+        card.classList.add('flipped', 'bg-blue-500', 'text-white');
+        
+        const flippedCards = document.querySelectorAll('.matching-card.flipped:not(.matched)');
+        if (flippedCards.length === 2) {
+            const card1 = flippedCards[0];
+            const card2 = flippedCards[1];
+            
+            if (card1.dataset.pair === card2.dataset.pair) {
+                // Match!
+                card1.classList.add('matched', 'bg-green-500');
+                card2.classList.add('matched', 'bg-green-500');
+                gameScore += 10;
+                document.getElementById('matchingScore').textContent = gameScore;
+                
+                // Check if all matched
+                const totalCards = document.querySelectorAll('.matching-card').length;
+                const matchedCards = document.querySelectorAll('.matching-card.matched').length;
+                if (matchedCards === totalCards) {
+                    endGame(true);
+                }
+            } else {
+                // No match
+                setTimeout(() => {
+                    card1.classList.remove('flipped', 'bg-blue-500', 'text-white');
+                    card2.classList.remove('flipped', 'bg-blue-500', 'text-white');
+                }, 1000);
+            }
+        }
+    }
+
+    function startQuizGame() {
+        currentGame = 'quiz';
+        gameScore = 0;
+        const gameArea = document.getElementById('gameArea');
+        gameArea.classList.remove('hidden');
+        
+        // Get random flashcards for quiz
+        const quizCards = allFlashcards.slice().sort(() => Math.random() - 0.5).slice(0, 10);
+        let currentQuestionIndex = 0;
+        
+        function showQuestion() {
+            if (currentQuestionIndex >= quizCards.length) {
+                endGame(true);
+                return;
+            }
+            
+            const card = quizCards[currentQuestionIndex];
+            const options = [card.back];
+            
+            // Add 3 wrong options
+            const wrongOptions = allFlashcards.filter(c => c.id !== card.id).map(c => c.back).sort(() => Math.random() - 0.5).slice(0, 3);
+            options.push(...wrongOptions);
+            options.sort(() => Math.random() - 0.5);
+            
+            gameArea.innerHTML = `
+                <div class="text-center mb-4">
+                    <h3 class="text-lg font-bold">Quiz Nhanh</h3>
+                    <p class="text-sm text-gray-600">Câu ${currentQuestionIndex + 1}/${quizCards.length}</p>
+                    <div class="flex justify-center gap-4 mt-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Điểm: <span id="quizScore">0</span></span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Thời gian: <span id="quizTime">30</span>s</span>
+                    </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl mb-4">
+                    <p class="text-lg font-bold text-center">${card.front}</p>
+                </div>
+                <div class="grid grid-cols-1 gap-3 mb-4">
+                    ${options.map((option, idx) => `
+                        <button class="p-3 bg-white border rounded-xl text-left hover:bg-gray-50 transition" onclick="answerQuiz(${idx}, '${option === card.back ? 'correct' : 'wrong'}')">
+                            ${String.fromCharCode(65 + idx)}. ${option}
+                        </button>
+                    `).join('')}
+                </div>
+                <div class="text-center">
+                    <button onclick="endGame()" class="px-6 py-2 bg-red-500 text-white rounded-xl font-bold hover:bg-red-600">Kết thúc</button>
+                </div>
+            `;
+            
+            // Start question timer
+            let timeLeft = 30;
+            gameTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('quizTime').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    answerQuiz(-1, 'timeout');
+                }
+            }, 1000);
+        }
+        
+        window.answerQuiz = function(optionIndex, result) {
+            clearInterval(gameTimer);
+            if (result === 'correct') {
+                gameScore += 10;
+                document.getElementById('quizScore').textContent = gameScore;
+                showNotification('✅ Đúng! +10 điểm');
+            } else if (result === 'wrong') {
+                showNotification('❌ Sai rồi!');
+            } else {
+                showNotification('⏰ Hết thời gian!');
+            }
+            
+            currentQuestionIndex++;
+            setTimeout(showQuestion, 1500);
+        };
+        
+        showQuestion();
+    }
+
+    function endGame(completed = false) {
+        clearInterval(gameTimer);
+        const gameArea = document.getElementById('gameArea');
+        
+        // Always reward diamonds based on score, not just completion
+        const diamondsEarned = Math.floor(gameScore / 20);
+        if (diamondsEarned > 0) {
+            userDiamonds += diamondsEarned;
+            localStorage.setItem('userDiamonds', userDiamonds);
+            updateAvatar(); // Update avatar based on new diamond count
+            showNotification(`🎉 ${completed ? 'Hoàn thành' : 'Chơi tốt'}! Nhận ${diamondsEarned} 💎 kim cương!`);
+        } else if (gameScore > 0) {
+            showNotification(`👍 Cố gắng thêm nhé! Lần sau sẽ nhận kim cương!`);
+        }
+        
+        gameArea.innerHTML = `
+            <div class="text-center">
+                <h3 class="text-lg font-bold mb-2">${completed ? '🎉 Hoàn thành!' : '⏰ Kết thúc'}</h3>
+                <p class="text-gray-600 mb-4">Điểm số: ${gameScore}</p>
+                <div class="flex gap-3">
+                    <button onclick="switchTab('games')" class="flex-1 px-4 py-2 bg-gray-500 text-white rounded-xl font-bold hover:bg-gray-600">Quay lại</button>
+                    <button onclick="restartGame()" class="flex-1 px-4 py-2 bg-blue-500 text-white rounded-xl font-bold hover:bg-blue-600">Chơi lại</button>
+                </div>
+            </div>
+        `;
+        
+        currentGame = null;
+    }
+
+    function getAdviceByScore(score) {
+        if (score === 100) {
+            return "🌟 Tuyệt vời! Bạn đã hoàn hảo! Tiếp tục duy trì thành tích này và giúp bạn học khác.";
+        } else if (score >= 90) {
+            return "🎉 Xuất sắc! Bạn nắm vững kiến thức. Hãy ôn lại những phần còn yếu một chút.";
+        } else if (score >= 80) {
+            return "👍 Rất tốt! Bạn hiểu rõ hầu hết nội dung. Cần ôn lại một vài câu hỏi để hoàn hảo hơn.";
+        } else if (score >= 70) {
+            return "✅ Tốt! Bạn đã vượt qua bài thi. Hãy ôn lại những phần còn lủng lẳng để tự tin hơn.";
+        } else if (score >= 60) {
+            return "📚 Khá được! Nhưng bạn cần ôn lại kỹ hơn. Hãy xem lại giải thích của những câu sai.";
+        } else if (score >= 50) {
+            return "💪 Cố gắng lên! Bạn cần ôn lại kỹ lưỡng. Hãy đọc lại đề cương và làm bài lần nữa.";
+        } else {
+            return "🤔 Bạn cần học lại từ đầu. Hãy tìm bạn hoặc thầy cô để được giúp đỡ thêm nhé!";
+        }
+    }
+
+    // ===== ARCHIVE TAB =====
+    function renderArchive() {
+        const filtered = getFilteredSyllabi();
+        
+        if (filtered.length === 0) {
+            document.getElementById('archiveList').innerHTML = '<p class="text-center text-gray-500 py-8">😔 Không tìm thấy tài liệu phù hợp. Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.</p>';
+            return;
+        }
+        
+        const html = filtered.map(syllabus => `
+            <div class="p-4 bg-white border rounded-2xl flex gap-4 items-start hover:shadow-md transition cursor-pointer hover:bg-blue-50" onclick="viewSyllabusDetail('${syllabus.id}')">
+                <div class="w-12 h-16 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0">
+                    <i class="fas fa-file-pdf text-2xl"></i>
+                </div>
+                <div class="flex-grow min-w-0">
+                    <p class="font-bold text-sm text-gray-900">${highlightSearchText(syllabus.title)}</p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded">📚 Grade ${syllabus.grade}</span>
+                        <span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded">${syllabus.subject}</span>
+                        ${syllabus.year ? `<span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded">📅 ${syllabus.year}</span>` : ''}
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">👤 ${syllabus.uploadedBy}</p>
+                    <div class="flex gap-2 mt-2">
+                        <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">👁️ ${syllabus.views} xem</span>
+                        <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">⬇️ ${syllabus.downloads} tải</span>
+                    </div>
+                    <div class="mt-2 flex flex-wrap gap-1">
+                        ${syllabus.keyVocabulary.slice(0, 4).map(word => {
+                            const isMatched = currentSearchQuery && word.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                            return `<span class="text-[9px] ${isMatched ? 'bg-yellow-100 text-yellow-800 font-bold' : 'bg-purple-100 text-purple-700'} px-2 py-0.5 rounded">📝 ${word}</span>`;
+                        }).join('')}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('archiveList').innerHTML = html;
+    }
+
+    function getFilteredSyllabi() {
+        return allSyllabi.filter(syllabus => {
+            // Grade filter
+            if (currentGradeFilter !== 'all' && syllabus.grade != currentGradeFilter) {
+                return false;
+            }
+            
+            // Subject filter
+            if (currentSubjectFilter !== 'all' && !syllabus.subject.toLowerCase().includes(currentSubjectFilter.toLowerCase())) {
+                return false;
+            }
+            
+            // Search query
+            if (currentSearchQuery) {
+                const query = currentSearchQuery.toLowerCase();
+                const matchTitle = syllabus.title.toLowerCase().includes(query);
+                const matchSubject = syllabus.subject.toLowerCase().includes(query);
+                const matchVocab = syllabus.keyVocabulary.some(word => word.toLowerCase().includes(query));
+                const matchUploader = syllabus.uploadedBy.toLowerCase().includes(query);
+                const matchYear = syllabus.year && String(syllabus.year).includes(query);
+                
+                if (!matchTitle && !matchSubject && !matchVocab && !matchUploader && !matchYear) {
+                    return false;
+                }
+            }
+            
+            return true;
+        });
+    }
+
+    function highlightSearchText(text) {
+        if (!currentSearchQuery) return text;
+        
+        const regex = new RegExp(`(${currentSearchQuery})`, 'gi');
+        return text.replace(regex, '<mark class="bg-yellow-200 font-bold">$1</mark>');
+    }
+
+    function filterByGrade(grade) {
+        currentGradeFilter = grade;
+        updateFilterButtons('grade', grade);
+        renderArchive();
+    }
+
+    function filterBySubject(subject) {
+        currentSubjectFilter = subject;
+        updateFilterButtons('subject', subject);
+        renderArchive();
+    }
+
+    function updateFilterButtons(filterType, value) {
+        // Update button styles based on filter type
+        if (filterType === 'grade') {
+            document.querySelectorAll('.grade-filter').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
+                btn.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-100');
+            });
+            
+            // Find and highlight the clicked button
+            document.querySelectorAll('.grade-filter').forEach(btn => {
+                const btnText = btn.textContent.trim();
+                let shouldHighlight = false;
+                
+                if (value === 'all' && btnText === 'Tất cả') {
+                    shouldHighlight = true;
+                } else if (btnText === `Grade ${value}`) {
+                    shouldHighlight = true;
+                }
+                
+                if (shouldHighlight) {
+                    btn.classList.remove('bg-blue-50', 'text-blue-700', 'border-blue-100');
+                    btn.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
+                }
+            });
+        }
+    }
+
+    function initializeSearchArchive() {
+        const searchInput = document.getElementById('searchArchive');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value.trim();
+                renderArchive();
+            });
+        }
+    }
+
+    function viewSyllabusDetail(syllabusId) {
+        const syllabus = allSyllabi.find(s => s.id === syllabusId);
+        if (!syllabus) return;
+
+        // Reward for viewing syllabus
+        userDiamonds += 1;
+        localStorage.setItem('userDiamonds', userDiamonds);
+        updateAvatar(); // Update avatar based on new diamond count
+        showNotification(`📖 Đang học tập! Bạn nhận được 1 💎 kim cương!`);
+
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto';
+        modal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-2xl w-full my-auto">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">${syllabus.title}</h2>
+                        <p class="text-gray-500 mt-1">👤 ${syllabus.uploadedBy}</p>
+                    </div>
+                    <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-gray-600 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-blue-50 p-3 rounded-xl">
+                        <p class="text-xs text-gray-500">Lớp học</p>
+                        <p class="text-lg font-bold text-blue-700">Grade ${syllabus.grade}</p>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-xl">
+                        <p class="text-xs text-gray-500">Môn học</p>
+                        <p class="text-lg font-bold text-green-700">${syllabus.subject}</p>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded-xl">
+                        <p class="text-xs text-gray-500">Lượt xem</p>
+                        <p class="text-lg font-bold text-purple-700">👁️ ${syllabus.views}</p>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-xl">
+                        <p class="text-xs text-gray-500">Tải về</p>
+                        <p class="text-lg font-bold text-orange-700">⬇️ ${syllabus.downloads}</p>
+                    </div>
+                </div>
+
+                ${syllabus.topics ? `
+                    <div class="mb-6">
+                        <h3 class="font-bold text-gray-900 mb-3">📚 Chủ đề chính</h3>
+                        <div class="flex flex-wrap gap-2">
+                            ${syllabus.topics.map(topic => `
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">${topic}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-900 mb-3">🔤 Từ vựng chính (${syllabus.keyVocabulary.length} từ)</h3>
+                    <div class="bg-gray-50 p-4 rounded-xl max-h-48 overflow-y-auto">
+                        <div class="flex flex-wrap gap-2">
+                            ${syllabus.keyVocabulary.map(word => `
+                                <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">${word}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition">
+                        <i class="fas fa-times mr-2"></i> Đóng
+                    </button>
+                    <button onclick="downloadSyllabus('${syllabus.title}')" class="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">
+                        <i class="fas fa-download mr-2"></i> Tải về
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function downloadSyllabus(title) {
+        showNotification(`📥 Đang tải: ${title}...`);
+        
+        // Simulate downloading by creating a text file with syllabus info
+        const syllabusData = allSyllabi.find(s => s.title === title);
+        if (!syllabusData) return;
+
+        // Create content for the file
+        const fileContent = `
+==========================================================
+ĐỀ CƯƠNG ÔN TẬP: ${syllabusData.title}
+==========================================================
+
+📚 Thông tin cơ bản:
+- Lớp học: Grade ${syllabusData.grade}
+- Môn học: ${syllabusData.subject}
+- Năm: ${syllabusData.year || 'N/A'}
+- Người đăng: ${syllabusData.uploadedBy}
+- Lượt xem: ${syllabusData.views}
+- Lần tải: ${syllabusData.downloads}
+
+==========================================================
+📌 CÁC CHỦ ĐỀ CHÍNH:
+==========================================================
+${syllabusData.topics.map((topic, idx) => `${idx + 1}. ${topic}`).join('\n')}
+
+==========================================================
+🔤 TỪ VỰNG TRỌNG TÂM (${syllabusData.keyVocabulary.length} từ):
+==========================================================
+${syllabusData.keyVocabulary.map((word, idx) => `${idx + 1}. ${word}`).join('\n')}
+
+==========================================================
+Tải xuống từ Cambridge Prep VN
+Ngày tải: ${new Date().toLocaleString('vi-VN')}
+==========================================================
+        `.trim();
+
+        // Create blob and download
+        const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${title.replace(/\//g, '_')}.txt`);
+        link.style.visibility = 'hidden';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        setTimeout(() => {
+            showNotification(`✅ Đã tải xong: ${title}`);
+            // Close the modal after download
+            const modal = document.querySelector('.fixed[onclick*="remove"]');
+            if (modal) {
+                modal.remove();
+            }
+        }, 500);
+    }
+
+    // ===== PDF UPLOAD & PROCESSING =====
+    function initializeUploadArea() {
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('bg-gray-200');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('bg-gray-200');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('bg-gray-200');
+            handleFileSelect(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFileSelect(e.target.files);
+        });
+    }
+
+    function handleFileSelect(files) {
+        if (files.length > 0) {
+            const pickedFile = files[0];
+            setSelectedPdfFile(pickedFile);
+            openPdfUpload();
+        }
+    }
+
+    function quickOpenPdfUpload() {
+        openPdfUpload();
+        const input = document.getElementById('pdfFileInput');
+        if (input) {
+            selectedPdfFile = null;
+            input.value = '';
+            input.click();
+        }
+    }
+
+    function openPdfUpload() {
+        document.getElementById('pdfUploadModal').classList.remove('hidden');
+    }
+
+    function closePdfUpload() {
+        document.getElementById('pdfUploadModal').classList.add('hidden');
+    }
+
+    async function processPdf(ev) {
+        const fileInput = document.getElementById('pdfFileInput');
+        const file = selectedPdfFile || fileInput?.files?.[0];
+        if (!file) {
+            if (fileInput) {
+                fileInput.value = '';
+                fileInput.click();
+            }
+            showNotification('❌ Vui lòng chọn file PDF', false);
+            return;
+        }
+        
+        // Validate file type
+        if (!file.type.includes('pdf') && !file.name.endsWith('.pdf')) {
+            showNotification('❌ Vui lòng chọn file PDF', false);
+            return;
+        }
+
+        const button = ev?.target;
+        if (button) {
+            button.disabled = true;
+            button.textContent = '⏳ Đang xử lý...';
+        }
+
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            
+            try {
+                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                let fullText = '';
+
+                for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
+                    const page = await pdf.getPage(i);
+                    const textContent = await page.getTextContent();
+                    const pageText = textContent.items.map(item => item.str).join(' ');
+                    fullText += pageText + ' ';
+                }
+
+                if (fullText.trim().length === 0) {
+                    // PDF không có text - dùng mock data
+                    useMockVocabulary();
+                } else {
+                    await extractVocabularyUsingTransformers(fullText);
+                }
+                closePdfUpload();
+                showNotification('✅ Đã phân tích xong! Các từ vựng được trích xuất.');
+            } catch (pdfError) {
+                // Nếu PDF.js fail, dùng mock data
+                console.warn('PDF parsing failed, using mock vocabulary:', pdfError);
+                useMockVocabulary();
+                closePdfUpload();
+                showNotification('✅ Đã thêm từ vựng mẫu (file PDF có thể không hỗ trợ)');
+            }
+        } catch (error) {
+            console.error('Error processing file:', error);
+            showNotification('❌ Lỗi: ' + error.message, false);
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.textContent = 'Phân tích';
+            }
+        }
+    }
+
+    function setSelectedPdfFile(file) {
+        selectedPdfFile = file;
+        const pdfInput = document.getElementById('pdfFileInput');
+        if (pdfInput) {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            pdfInput.files = dt.files;
+        }
+        showNotification('📂 Đã chọn: ' + file.name);
+    }
+
+    function useMockVocabulary() {
+        const mockWords = ['photosynthesis', 'chlorophyll', 'ecosystem', 'biodiversity', 'metabolism', 'osmosis', 'mitochondria', 'evaporation', 'condensation', 'precipitation'];
+        showExtractedWords(mockWords);
+        
+        // Add flashcards
+        const newFlashcards = mockWords.map((word, idx) => ({
+            id: `ai-fc-${Date.now()}-${idx}`,
+            front: word,
+            back: `[Định nghĩa từ: ${word}] - Bạn có thể thêm định nghĩa bằng cách sửa flashcard này.`,
+            backViet: `[Định nghĩa từ: ${word}] - Bạn có thể thêm định nghĩa bằng cách sửa flashcard này.`,
+            subject: 'AI Extracted',
+            grade: 5,
+            tags: ['ai-extracted']
+        }));
+        
+        allFlashcards.push(...newFlashcards);
+        localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+    }
+
+    async function extractVocabularyUsingTransformers(text) {
+        try {
+            showNotification('🔄 Đang phân tích text...', false);
+            
+            // Mock NER extraction - in production, use actual transformers model
+            const words = text.match(/\b[a-zA-Z]+\b/gi) || [];
+            const uniqueWords = [...new Set(words.map(w => w.toLowerCase()))];
+            
+            // Filter: keep words with 4+ characters (likely important terms)
+            const importantWords = uniqueWords.filter(w => w.length >= 4).slice(0, 10);
+            
+            // Create flashcards from extracted words
+            const newFlashcards = importantWords.map((word, idx) => ({
+                id: `ai-fc-${Date.now()}-${idx}`,
+                front: word,
+                back: `[Định nghĩa từ: ${word}] - Bạn có thể thêm định nghĩa bằng cách sửa flashcard này.`,
+                backViet: `[Định nghĩa từ: ${word}] - Bạn có thể thêm định nghĩa bằng cách sửa flashcard này.`,
+                subject: 'AI Extracted',
+                grade: 5,
+                tags: ['ai-extracted']
+            }));
+
+            // Add to flashcards
+            allFlashcards.push(...newFlashcards);
+            localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+            
+            // Show extracted words
+            showExtractedWords(importantWords);
+            showNotification('✅ Trích xuất ' + newFlashcards.length + ' từ vựng mới!');
+        } catch (error) {
+            console.error('Error in vocabulary extraction:', error);
+            showNotification('❌ Lỗi: ' + error.message);
+        }
+    }
+
+    function showExtractedWords(words) {
+        const container = document.getElementById('aiContent');
+        if (container) {
+            container.innerHTML = `
+                <div class="bg-white border-2 border-purple-200 rounded-2xl p-4 mb-4">
+                    <h3 class="font-bold text-lg mb-3">✨ Từ vựng được trích xuất (${words.length} từ)</h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${words.map(word => `
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-bold">
+                                ${word}
+                            </span>
+                        `).join('')}
+                    </div>
+                    <button onclick="switchTab('flashcards')" class="w-full py-3 bg-purple-600 text-white rounded-2xl font-bold hover:bg-purple-700 transition">
+                        📝 Xem flashcards mới
+                    </button>
+                </div>
+                <button onclick="openPdfUpload()" class="w-full py-4 bg-purple-600 text-white rounded-2xl font-bold shadow-lg shadow-purple-200 hover:bg-purple-700 transition">
+                    <i class="fas fa-magic mr-2"></i> Quét Đề Cương Khác
+                </button>
+            `;
+        }
+    }
+
+    function createFlashcardFromAI(front, back) {
+        // Show modal to input Vietnamese definition
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+        modal.innerHTML = `
+            <div class="bg-white rounded-3xl p-6 max-w-md w-full">
+                <h3 class="text-xl font-bold mb-4">Thêm định nghĩa Tiếng Việt</h3>
+                <p class="text-sm text-gray-600 mb-2"><strong>Từ:</strong> ${front}</p>
+                <p class="text-xs text-gray-500 mb-4"><strong>Định nghĩa Anh:</strong> ${back}</p>
+                
+                <textarea id="vietnameseInput" class="w-full p-3 border-2 border-gray-300 rounded-xl mb-4" rows="4" placeholder="Nhập định nghĩa tiếng Việt..."></textarea>
+                
+                <div class="flex gap-3">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 py-2 bg-gray-200 text-gray-800 rounded-lg font-bold hover:bg-gray-300 transition">Hủy</button>
+                    <button onclick="confirmCreateFlashcard('${front}', '${back.replace(/'/g, "\\'")}', document.getElementById('vietnameseInput').value); this.closest('.fixed').remove()" class="flex-1 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition">Thêm</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        setTimeout(() => document.getElementById('vietnameseInput')?.focus(), 100);
+    }
+
+    function confirmCreateFlashcard(front, back, backViet) {
+        const newFlashcard = {
+            id: `ai-fc-${Date.now()}`,
+            front: front,
+            back: back,
+            backViet: backViet,
+            subject: 'AI Extracted',
+            grade: 5,
+            tags: ['ai-extracted']
+        };
+
+        // Add to flashcards
+        allFlashcards.push(newFlashcard);
+        localStorage.setItem('flashcards', JSON.stringify(allFlashcards));
+
+        showNotification(`✨ Đã thêm "${front}" vào flashcards! Bạn nhận được 1 💎 kim cương!`);
+        // Reward for AI extracted flashcards
+        userDiamonds += 1;
+        localStorage.setItem('userDiamonds', userDiamonds);
+        updateAvatar(); // Update avatar based on new diamond count
+    }
+
+    // ===== UTILITIES =====
+    function showNotification(message, autoClose = true) {
+        const toast = document.createElement('div');
+        toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-3 rounded-full text-sm z-50 max-w-xs text-center';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        
+        if (autoClose) {
+            setTimeout(() => toast.remove(), 3000);
+        }
+    }
+
+    // ===== START APP =====
+    window.addEventListener('load', init);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "exam-1",
+    "title": "Primary Checkpoint Science - Paper 1",
+    "subject": "Science",
+    "grade": 5,
+    "year": 2024,
+    "duration": 45,
+    "totalScore": 50,
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple-choice",
+        "text": "What is the process where water changes from liquid to vapor?",
+        "options": [
+          "Evaporation",
+          "Condensation",
+          "Freezing",
+          "Melting"
+        ],
+        "answer": "Evaporation",
+        "explanation": "Evaporation is the process where water changes from liquid to gas/vapor due to heat."
+      },
+      {
+        "id": 2,
+        "type": "multiple-choice",
+        "text": "Which of these is a non-living thing?",
+        "options": [
+          "Plant",
+          "Animal",
+          "Rock",
+          "Bacteria"
+        ],
+        "answer": "Rock",
+        "explanation": "A rock is non-living matter. Plants, animals, and bacteria are all living organisms."
+      },
+      {
+        "id": 3,
+        "type": "multiple-choice",
+        "text": "What do plants use to make their own food?",
+        "options": [
+          "Water, soil, and sunlight",
+          "Water, carbon dioxide, and sunlight",
+          "Soil, minerals, and oxygen",
+          "Water, nitrogen, and oxygen"
+        ],
+        "answer": "Water, carbon dioxide, and sunlight",
+        "explanation": "Plants use photosynthesis: water + CO2 + sunlight = glucose + oxygen"
+      }
+    ]
+  },
+  {
+    "id": "exam-2",
+    "title": "English Second Language - Reading & Usage Sample A",
+    "subject": "English",
+    "grade": 5,
+    "year": 2024,
+    "duration": 60,
+    "totalScore": 50,
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple-choice",
+        "text": "The teacher _____ us an interesting story yesterday.",
+        "options": [
+          "tell",
+          "told",
+          "tells",
+          "has told"
+        ],
+        "answer": "told",
+        "explanation": "Past tense is needed for 'yesterday'. Simple past tense uses 'told'."
+      },
+      {
+        "id": 2,
+        "type": "multiple-choice",
+        "text": "What is the opposite of 'happy'?",
+        "options": [
+          "Sad",
+          "Angry",
+          "Tired",
+          "Scared"
+        ],
+        "answer": "Sad",
+        "explanation": "Sad is the opposite of happy. Both describe emotions."
+      }
+    ]
+  },
+  {
+    "id": "exam-3",
+    "title": "Primary Checkpoint Mathematics - Paper 1",
+    "subject": "Mathematics",
+    "grade": 5,
+    "year": 2024,
+    "duration": 45,
+    "totalScore": 50,
+    "difficulty": "hard",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple-choice",
+        "text": "What is 25% of 200?",
+        "options": [
+          "25",
+          "50",
+          "75",
+          "100"
+        ],
+        "answer": "50",
+        "explanation": "25% of 200 = (25/100) × 200 = 50"
+      },
+      {
+        "id": 2,
+        "type": "multiple-choice",
+        "text": "Which fraction is equal to 0.5?",
+        "options": [
+          "1/4",
+          "1/3",
+          "1/2",
+          "2/3"
+        ],
+        "answer": "1/2",
+        "explanation": "1/2 = 0.5 (one half equals fifty percent)"
+      }
+    ]
+  },
+  {
+    "id": "exam-4",
+    "title": "Primary Checkpoint Science - Paper 2",
+    "subject": "Science",
+    "grade": 4,
+    "year": 2023,
+    "duration": 45,
+    "totalScore": 50,
+    "difficulty": "easy",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple-choice",
+        "text": "What is photosynthesis?",
+        "options": [
+          "The process by which plants make food using sunlight",
+          "The process by which animals digest food",
+          "The process by which water evaporates",
+          "The process by which rocks break down"
+        ],
+        "answer": "The process by which plants make food using sunlight",
+        "explanation": "Photosynthesis is how plants convert sunlight into chemical energy (food)."
+      }
+    ]
+  },
+  {
+    "id": "exam-5",
+    "title": "English Second Language - Writing Sample",
+    "subject": "English",
+    "grade": 4,
+    "year": 2023,
+    "duration": 60,
+    "totalScore": 50,
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": 1,
+        "type": "short-answer",
+        "text": "Write a short paragraph (5-7 sentences) about your favorite hobby.",
+        "answer": "",
+        "sampleAnswer": "Sample: My favorite hobby is reading. I enjoy reading adventure books and mystery novels. Reading helps me learn new words and ideas. I usually read before bed at night. It relaxes me and helps me sleep better. I have read many interesting books this year.",
+        "explanation": "Good writing uses complete sentences, proper grammar, and describes the hobby clearly. \n\n📝 Sample Answer:\nMy favorite hobby is reading. I enjoy reading adventure books and mystery novels. Reading helps me learn new words and ideas. I usually read before bed at night. It relaxes me and helps me sleep better. I have read many interesting books this year."
+      }
+    ]
+  }
+]

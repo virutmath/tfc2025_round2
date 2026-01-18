@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Quả Học Tập - Cambridge Prep Exam</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, #00539C 0%, #00A651 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .slide-header h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .slide-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-content {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stats-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #00539C;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .stat-content {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #00539C;
+        }
+
+        .stat-comparison {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+        }
+
+        .comparison-item {
+            flex: 1;
+        }
+
+        .comparison-label {
+            color: #999;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .comparison-value {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .improvement {
+            color: #00A651;
+            font-weight: 700;
+        }
+
+        .arrow {
+            font-size: 1.8em;
+            color: #00A651;
+            font-weight: bold;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .chart-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .chart-wrapper {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chart-title {
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        canvas {
+            max-height: 300px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #FFD700 0%, transparent 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: #f0f0f0;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .footer-logo {
+            color: #00539C;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .conclusion {
+            color: #00A651;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        @media (max-width: 1024px) {
+            .slide-content {
+                grid-template-columns: 1fr;
+            }
+
+            .slide-header h1 {
+                font-size: 2em;
+            }
+
+            .slide-content {
+                padding: 30px;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: #00A651;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="slide-header">
+            <h1>📊 KẾT QUẢ HỌC TẬP CAMBRIDGE</h1>
+            <p>Sự Tiến Bộ Vượt Trội: Từ 3A6 (2024-2025) Đến 4A6 (2025-2026)</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="slide-content">
+            <!-- Left: Statistics -->
+            <div class="stats-section">
+                <div class="stat-box">
+                    <div class="stat-label">🎯 Tỷ Lệ Đạt "Outstanding + High"</div>
+                    <div class="stat-content">
+                        <div>
+                            <div class="comparison-item">
+                                <div class="comparison-label">3A6 (2024-2025)</div>
+                                <div class="comparison-value">50.9%</div>
+                            </div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div>
+                            <div class="comparison-item">
+                                <div class="comparison-label">4A6 (2025-2026)</div>
+                                <div class="comparison-value improvement">53.6%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="badge">📈 +2.7%</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-label">⭐ Học Sinh Đạt "Outstanding"</div>
+                    <div class="stat-content">
+                        <div>
+                            <div class="comparison-item">
+                                <div class="comparison-label">3A6 (2024-2025)</div>
+                                <div class="comparison-value">19.0%</div>
+                            </div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div>
+                            <div class="comparison-item">
+                                <div class="comparison-label">4A6 (2025-2026)</div>
+                                <div class="comparison-value improvement">30.3%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="badge">🚀 +11.3%</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-label">💡 Nhân Xét</div>
+                    <p style="color: #333; line-height: 1.6;">
+                        Lớp 4A6 (năm này) đạt kết quả <span class="highlight">vượt trội</span> so với 3A6 (năm ngoái), đặc biệt là tỷ lệ học sinh đạt "Outstanding" tăng <span class="improvement">gấp 1.6 lần</span> từ 19 lên 35 học sinh.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Charts -->
+            <div class="chart-section">
+                <!-- Chart 1: Distribution Comparison -->
+                <div class="chart-wrapper">
+                    <div class="chart-title">📊 So Sánh Phân Phối Xếp Loại</div>
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+
+                <!-- Chart 2: Top 2 Categories -->
+                <div class="chart-wrapper">
+                    <div class="chart-title">🏆 Outstanding + High (Nhóm Học Sinh Giỏi)</div>
+                    <canvas id="topCategoriesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span class="footer-text">
+                <span class="conclusion">✨ Ứng Dụng Cambridge Prep Exam Mang Lại Thành Quả Rõ Rệt</span>
+            </span>
+            <span class="footer-logo">🌟 SUPER STAR</span>
+        </div>
+    </div>
+
+    <script>
+        // Chart 1: Distribution Comparison
+        const ctx1 = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Outstanding', 'High', 'Good', 'Aspiring', 'Basic', 'Unclassified'],
+                datasets: [
+                    {
+                        label: '3A6 (2024-2025)',
+                        data: [19.0, 31.9, 19.8, 21.6, 6.0, 1.7],
+                        backgroundColor: 'rgba(100, 150, 200, 0.7)',
+                        borderColor: 'rgba(100, 150, 200, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8,
+                    },
+                    {
+                        label: '4A6 (2025-2026)',
+                        data: [30.3, 23.3, 21.5, 18.1, 6.0, 0.9],
+                        backgroundColor: 'rgba(0, 166, 81, 0.8)',
+                        borderColor: 'rgba(0, 166, 81, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 12, weight: 600 },
+                            padding: 15,
+                            usePointStyle: true,
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 35,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: { size: 11 }
+                        },
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)',
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { size: 11, weight: 500 }
+                        },
+                        grid: {
+                            display: false,
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Top Categories Pie Chart
+        const ctx2 = document.getElementById('topCategoriesChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Outstanding', 'High', 'Còn Lại'],
+                datasets: [
+                    {
+                        label: '3A6 (2024-2025)',
+                        data: [19.0, 31.9, 49.1],
+                        backgroundColor: [
+                            'rgba(100, 150, 200, 0.9)',
+                            'rgba(150, 180, 220, 0.7)',
+                            'rgba(200, 200, 200, 0.3)',
+                        ],
+                        borderColor: [
+                            'rgba(100, 150, 200, 1)',
+                            'rgba(150, 180, 220, 1)',
+                            'rgba(200, 200, 200, 1)',
+                        ],
+                        borderWidth: 2,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#000',
+                    }
+                }
+            }
+        });
+
+        // Add animation effect on load
+        window.addEventListener('load', () => {
+            const statBoxes = document.querySelectorAll('.stat-box');
+            statBoxes.forEach((box, index) => {
+                box.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

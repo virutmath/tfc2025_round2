@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Thuyết Trình Thi Cambridge - Super Star</title>
+    <script src="https://unpkg.com/chart.js@3/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex !important;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ========== SLIDE 1: TITLE ========== */
+        .slide1 {
+            background: linear-gradient(135deg, #00539C 0%, #00A651 100%);
+            color: white;
+            text-align: center;
+            padding: 80px;
+        }
+
+        .slide1 h1 {
+            font-size: 120px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+        }
+
+        .slide1 h2 {
+            font-size: 56px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .slide1 p {
+            font-size: 40px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .slide1-tagline {
+            font-size: 48px;
+            font-weight: 700;
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px 50px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* ========== SLIDE 2: PROBLEM ========== */
+        .slide2 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 80px;
+            text-align: center;
+        }
+
+        .slide2 h1 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .problem-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 50px;
+            border-radius: 20px;
+            border: 3px solid #00A651;
+            backdrop-filter: blur(10px);
+        }
+
+        .problem-card h3 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #FFD700;
+        }
+
+        .problem-card p {
+            font-size: 36px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .problem-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        /* ========== SLIDE 3: SOLUTION ========== */
+        .slide3 {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            color: white;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide3 h1 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #00A651;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .solution-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1600px;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, rgba(0, 166, 81, 0.15), rgba(0, 83, 156, 0.15));
+            padding: 60px;
+            border-radius: 20px;
+            border: 4px solid #00A651;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .solution-card h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #FFD700;
+        }
+
+        .solution-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        .solution-card p {
+            font-size: 38px;
+            line-height: 1.7;
+            color: #e0e0e0;
+        }
+
+        .app-name {
+            font-size: 56px;
+            font-weight: 900;
+            color: #00A651;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .tagline {
+            font-size: 44px;
+            color: #FFD700;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 50px;
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        /* ========== SLIDE 4: DATA ========== */
+        .slide4 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: white;
+            padding: 60px;
+            overflow: auto;
+        }
+
+        .data-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .data-header h1 {
+            font-size: 72px;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .data-header p {
+            font-size: 40px;
+            color: #e0e0e0;
+        }
+
+        .data-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 6px solid #00A651;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-box h3 {
+            font-size: 38px;
+            margin-bottom: 25px;
+            color: #FFD700;
+        }
+
+        .stat-comparison {
+            display: flex;
+            gap: 30px;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 26px;
+            color: #b0b0b0;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 52px;
+            font-weight: 700;
+            color: #00A651;
+        }
+
+        .stat-improvement {
+            font-size: 44px;
+            color: #FFD700;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #00539C;
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        /* ========== SLIDE 5: TIMELINE ========== */
+        .slide5 {
+            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+            color: white;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide5 h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1800px;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, rgba(0, 166, 81, 0.1), rgba(0, 83, 156, 0.1));
+            padding: 50px;
+            border-radius: 15px;
+            border: 3px solid #00A651;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .timeline-month {
+            font-size: 48px;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .timeline-title {
+            font-size: 38px;
+            font-weight: 700;
+            color: #00A651;
+            margin-bottom: 30px;
+        }
+
+        .timeline-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-items-list {
+            font-size: 32px;
+            color: #e0e0e0;
+            line-height: 1.8;
+            text-align: left;
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .timeline-items-list li {
+            margin-bottom: 15px;
+        }
+
+        .funding-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 166, 81, 0.2));
+            padding: 40px;
+            border-radius: 15px;
+            border: 3px solid #FFD700;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .funding-box h3 {
+            font-size: 40px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .funding-box p {
+            font-size: 36px;
+            color: #00A651;
+            font-weight: 700;
+        }
+
+        /* ========== SLIDE 6: CLOSING ========== */
+        .slide6 {
+            background: linear-gradient(135deg, #00539C 0%, #00A651 100%);
+            color: white;
+            text-align: center;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide6 h1 {
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .closing-content {
+            margin-bottom: 60px;
+        }
+
+        .closing-point {
+            font-size: 44px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            border-radius: 20px;
+            margin-top: 50px;
+            border: 3px solid white;
+        }
+
+        .cta-text {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .cta-vote {
+            font-size: 52px;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .tagline-final {
+            font-size: 48px;
+            margin-top: 40px;
+            font-style: italic;
+            color: #FFD700;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 166, 81, 0.8);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(0, 166, 81, 1);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(100, 100, 100, 0.5);
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: scale(1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            background: rgba(0, 166, 81, 0.9);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1920px) {
+            .slide1 h1 { font-size: 100px; }
+            .slide1 h2 { font-size: 48px; }
+            .data-header h1 { font-size: 60px; }
+        }
+
+        /* Keyboard navigation hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            opacity: 0.6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide slide1 active">
+            <h1>🌟 SUPER STAR 🌟</h1>
+            <h2>Cambridge Prep Exam</h2>
+            <p>Tái định nghĩa việc ôn thi</p>
+            <div class="slide1-tagline">
+                ✨ Biến Tài Liệu Ôn Tập Nhàm Chán Thành Nội dung Thú Vị ✨
+            </div>
+        </div>
+
+        <!-- SLIDE 2: PROBLEM -->
+        <div class="slide slide2">
+            <h1>🚨 VẤN ĐỀ 🚨</h1>
+            <div class="problem-container">
+                <div class="problem-card">
+                    <div class="problem-icon">📚</div>
+                    <h3>Tài Liệu Dài</h3>
+                    <p>Khó nhớ từ vựng mới</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😟</div>
+                    <h3>Quá Nhiều Thông Tin</h3>
+                    <p>Nhiều khái niệm và bài tập</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💻</div>
+                    <h3>Không Có Bài Thực Hành</h3>
+                    <p>Không có bài thi để luyện tập</p>
+                </div>
+            </div>
+            <h2 style="font-size: 56px; color: #FFD700; margin-top: 40px;">
+                ⭐ Chúng Ta Cần Một Giải Pháp Thông Minh! ⭐
+            </h2>
+        </div>
+
+        <!-- SLIDE 3: SOLUTION -->
+        <div class="slide slide3">
+            <h1>💡 GIẢI PHÁP 💡</h1>
+            <div class="app-name">Cambridge Prep Exam</div>
+            <p style="font-size: 40px; margin-bottom: 50px; color: #e0e0e0;">
+                Ứng dụng học thông minh của học sinh, cho học sinh
+            </p>
+
+            <div class="solution-container">
+                <div class="solution-card">
+                    <div class="solution-icon">🤖</div>
+                    <h2>Tự Động Tạo Bằng AI</h2>
+                    <p>Upload Revision File → AI tạo flashcard!</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">📖</div>
+                    <h2>Đề thi khóa trước</h2>
+                    <p>Bài thi thực tế từ các lớp khóa trước. Luyện tập thực tế!</p>
+                </div>
+            </div>
+
+            <div class="tagline">
+                "Chúng tôi không thay thế tài liệu. Chúng tôi làm cho việc học dễ dàng và nhanh hơn!"
+            </div>
+        </div>
+
+        <!-- SLIDE 4: FEATURES (moved before DATA) -->
+        <div class="slide slide4b" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); color: white; padding: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h1 style="font-size: 72px; font-weight: 900; margin-bottom: 60px; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                🎯 TÍNH NĂNG ỨNG DỤNG 🎯
+            </h1>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; max-width: 2000px; width: 100%;">
+                <!-- Feature 1: AI Extract -->
+                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); padding: 50px; border-radius: 15px; border: 3px solid #A855F7; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">🤖</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Trích Xuất AI</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        Upload đề cương → AI đọc → Tự động tạo thẻ ghi nhớ
+                    </p>
+                </div>
+
+                <!-- Feature 2: Flashcards -->
+                <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05)); padding: 50px; border-radius: 15px; border: 3px solid #F97316; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">🃏</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Thẻ Học Tập</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        500+ thẻ, học bất cứ lúc nào ở bất cứ đâu
+                    </p>
+                </div>
+
+                <!-- Feature 3: Practice Exams -->
+                <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); padding: 50px; border-radius: 15px; border: 3px solid #22C55E; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">📝</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Ngân Hàng Câu Hỏi</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        300+ câu hỏi Cambridge thực tế, nhận phản hồi ngay
+                    </p>
+                </div>
+
+                <!-- Feature 4: Archive -->
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); padding: 50px; border-radius: 15px; border: 3px solid #3B82F6; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">📚</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Đề Thi Khóa Trước</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        Bài thi từ các lớp khóa trước, trải nghiệm thực tế
+                    </p>
+                </div>
+
+                <!-- Feature 5: Games -->
+                <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.05)); padding: 50px; border-radius: 15px; border: 3px solid #EC4899; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">🎮</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Trò Chơi Vui Vẻ</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        Trò chơi ghép cặp & Trắc nghiệm, học vừa chơi vừa học
+                    </p>
+                </div>
+
+                <!-- Feature 6: Rewards -->
+                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(14, 165, 233, 0.1)); padding: 50px; border-radius: 15px; border: 3px solid #00A651; text-align: center; backdrop-filter: blur(10px);">
+                    <div style="font-size: 70px; margin-bottom: 20px;">💎</div>
+                    <h3 style="font-size: 40px; font-weight: 700; color: #FFD700; margin-bottom: 25px;">Hệ Thống Phần Thưởng</h3>
+                    <p style="font-size: 32px; color: #e0e0e0; line-height: 1.6;">
+                        Kiếm ngọc, nâng cấp, trở thành Super Star
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; background: rgba(255, 215, 0, 0.15); padding: 40px; border-radius: 15px; border: 3px solid #FFD700; text-align: center; max-width: 1200px;">
+                <p style="font-size: 40px; color: #e0e0e0; font-weight: 700;">
+                    ✨ Tất cả tính năng làm cho việc học <span style="color: #FFD700;">thú vị, nhanh & dễ dàng</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: VIDEO DEMO -->
+        <div class="slide slide4c" style="background: #000; color: white; padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 72px; font-weight: 900; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">🎬 DEMO ỨNG DỤNG 🎬</h1>
+            </div>
+            <video id="demoVideo" autoplay muted controls loop style="width: 80%; height: 75vh; border-radius: 20px; border: 4px solid #00A651; box-shadow: 0 0 30px rgba(0, 166, 81, 0.5); object-fit: contain;">
+                <source src="demo_app_50s.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+        </div>
+
+        <!-- SLIDE 6: DATA -->
+        <div class="slide slide4" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); color: white; padding: 60px; overflow: auto;">
+            <div class="data-header">
+                <h1>📊 KẾT QUẢ THỰC TẾ 📊</h1>
+                <p>Kiểm tra ở Lớp 4A6 (2025-2026)</p>
+            </div>
+
+            <div class="data-content">
+                <div class="stat-box">
+                    <h3>⭐ Tỷ Lệ Xuất Sắc</h3>
+                    <div class="stat-comparison">
+                        <div class="stat-item">
+                            <div class="stat-label">Lớp 3A6 (Năm Trước)</div>
+                            <div class="stat-value">19%</div>
+                        </div>
+                        <div style="font-size: 42px; color: #00A651; font-weight: 700;">→</div>
+                        <div class="stat-item">
+                            <div class="stat-label">Lớp 4A6 (Năm Nay)</div>
+                            <div class="stat-value">30.3%</div>
+                        </div>
+                    </div>
+                    <div class="stat-improvement">🚀 +11.3% (Gấp 1.6 Lần!)</div>
+                </div>
+
+                <div class="stat-box">
+                    <h3>🎯 Xuất Sắc + Tốt</h3>
+                    <div class="stat-comparison">
+                        <div class="stat-item">
+                            <div class="stat-label">Lớp 3A6 (Năm Trước)</div>
+                            <div class="stat-value">50.9%</div>
+                        </div>
+                        <div style="font-size: 42px; color: #00A651; font-weight: 700;">→</div>
+                        <div class="stat-item">
+                            <div class="stat-label">Lớp 4A6 (Năm Nay)</div>
+                            <div class="stat-value">53.6%</div>
+                        </div>
+                    </div>
+                    <div class="stat-improvement">📈 +2.7%</div>
+                </div>
+
+                <div class="stat-box" style="grid-column: 1 / -1;">
+                    <h3>📚 Dữ Liệu Ứng Dụng Hiện Tại</h3>
+                    <p style="font-size: 36px; color: #e0e0e0; line-height: 1.8;">
+                        ✅ 20+ Bài Thi Thực Hành &nbsp; | &nbsp; ✅ 500+ Flashcard &nbsp; | &nbsp; ✅ 100% Lớp 4A6 Sử Dụng
+                    </p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">📊 So Sánh Phân Bố Điểm</div>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: TIMELINE -->
+        <div class="slide slide5">
+            <h1>📅 LỘ TRÌNH 2026 CỦA CHÚNG TÔI 📅</h1>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-month">THÁNG 3</div>
+                    <div class="timeline-icon">📚</div>
+                    <div class="timeline-title">XÂY DỰNG NGÂN HÀNG ĐỀ THI</div>
+                    <ul class="timeline-items-list">
+                        <li>✓ Thu thập đề thi khóa trước</li>
+                        <li>✓ Tạo cơ sở dữ liệu đề thi</li>
+                        <li>✓ Kiểm tra mọi thứ</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-month">THÁNG 4</div>
+                    <div class="timeline-icon">💰</div>
+                    <div class="timeline-title">GÂY QUỸ</div>
+                    <ul class="timeline-items-list">
+                        <li>✓ Trình bày với nhà trường</li>
+                        <li>✓ Xin hỗ trợ từ phụ huynh</li>
+                        <li>✓ Nâng cấp máy chủ</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-month">THÁNG 5</div>
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-title">RA MẮT ĐẦY ĐỦ</div>
+                    <ul class="timeline-items-list">
+                        <li>✓ Phát hành cho toàn bộ nhà trường</li>
+                        <li>✓ Hỗ trợ học sinh</li>
+                        <li>✓ Theo dõi kết quả</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="funding-box">
+                <h3>💎 MỤC TIÊU 💎</h3>
+                <p>3.000 USD để nâng cấp máy chủ cho 2.000 học sinh và trả phí duy trì trong vòng 1 năm</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: CLOSING -->
+        <div class="slide slide6">
+            <h1>🎉 BÌNH CHỌN CHO SUPER STAR 🎉</h1>
+
+            <div class="closing-content">
+                <div class="closing-point">
+                    ✨ Học tập không chỉ là công việc khó khăn - nó có thể thú vị!
+                </div>
+
+                <div class="closing-point">
+                    🌟 Cạnh tranh để nâng hạng "Cambridge Super Star"
+                </div>
+
+                <div class="closing-point">
+                    💡 Dự án nhỏ hôm nay → Thay đổi lớn ngày mai: Được tạo bởi học sinh, cho học sinh
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <div class="cta-text">Tham Gia Super Star!</div>
+                <div class="cta-vote">Bình chọn Cho Thành công 🚀</div>
+            </div>
+
+            <div class="tagline-final">
+                "Super Star - Được Xây Dựng Bởi Học Sinh, Cho Học Sinh"
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← TRƯỚC</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">TIẾP →</button>
+    </div>
+
+    <div class="keyboard-hint">
+        💡 Bấm → hoặc ← để điều hướng | Bấm F để toàn màn hình
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        console.log('Total slides found:', totalSlides);
+
+        function showSlide(n) {
+            // Validate index
+            if (n < 0 || n >= totalSlides) {
+                console.warn('Invalid slide index:', n);
+                return;
+            }
+
+            console.log('=== SHOWING SLIDE:', n, '===');
+            console.log('Total slides:', totalSlides);
+
+            // Remove active from all slides
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                slide.style.display = 'none';
+            });
+
+            // Add active to current slide
+            console.log('Setting slide', n, 'to active');
+            console.log('Slide element:', slides[n]);
+            console.log('Slide class before:', slides[n].className);
+            
+            slides[n].classList.add('active');
+            slides[n].style.display = 'flex';
+            
+            console.log('Slide class after:', slides[n].className);
+            console.log('Slide style.display:', slides[n].style.display);
+
+            // Update counter
+            document.getElementById('current-slide').textContent = n + 1;
+            console.log('Counter updated to:', (n + 1) + ' / ' + totalSlides);
+
+            // Update button states
+            document.getElementById('prev-btn').disabled = (n === 0);
+            document.getElementById('next-btn').disabled = (n === totalSlides - 1);
+
+            // Initialize charts when data slide (index 3) is shown
+            if (n === 3) {
+                setTimeout(initCharts, 100);
+            }
+        }
+
+        function nextSlide() {
+            console.log('=== NEXT CLICK ===');
+            console.log('Current slide index:', currentSlide, 'Total:', totalSlides);
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                console.log('Moving to slide:', currentSlide);
+                showSlide(currentSlide);
+            } else {
+                console.log('Already at last slide');
+            }
+        }
+
+        function previousSlide() {
+            console.log('=== PREVIOUS CLICK ===');
+            console.log('Current slide index:', currentSlide);
+            if (currentSlide > 0) {
+                currentSlide--;
+                console.log('Moving to slide:', currentSlide);
+                showSlide(currentSlide);
+            } else {
+                console.log('Already at first slide');
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                console.log('Arrow Right pressed');
+                e.preventDefault();
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                console.log('Arrow Left pressed');
+                e.preventDefault();
+                previousSlide();
+            }
+            if (e.key === 'f' || e.key === 'F') {
+                e.preventDefault();
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log('Fullscreen not available');
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        let chartsInitialized = false;
+
+        function initCharts() {
+            if (chartsInitialized) return;
+            chartsInitialized = true;
+
+            // Chart: Distribution Comparison
+            const ctx1 = document.getElementById('comparisonChart');
+            if (ctx1) {
+                new Chart(ctx1.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Outstanding', 'High', 'Good', 'Aspiring', 'Basic', 'Unclassified'],
+                        datasets: [
+                            {
+                                label: '3A6 (2024-2025) - Năm Trước',
+                                data: [19.0, 31.9, 19.8, 21.6, 6.0, 1.7],
+                                backgroundColor: 'rgba(100, 150, 200, 0.8)',
+                                borderColor: 'rgba(100, 150, 200, 1)',
+                                borderWidth: 3,
+                                borderRadius: 8,
+                            },
+                            {
+                                label: '4A6 (2025-2026) - Năm Nay',
+                                data: [30.3, 23.3, 21.5, 18.1, 6.0, 0.9],
+                                backgroundColor: 'rgba(0, 166, 81, 0.9)',
+                                borderColor: 'rgba(0, 166, 81, 1)',
+                                borderWidth: 3,
+                                borderRadius: 8,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    font: { size: 18, weight: 'bold' },
+                                    color: 'white',
+                                    padding: 20,
+                                    usePointStyle: true,
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 35,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    },
+                                    font: { size: 16, weight: 'bold' },
+                                    color: 'white',
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)',
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    font: { size: 16, weight: 'bold' },
+                                    color: 'white',
+                                },
+                                grid: {
+                                    display: false,
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('=== DOM LOADED ===');
+                console.log('Slides found:', slides.length);
+                slides.forEach((slide, i) => {
+                    console.log('Slide', i, ':', slide.className);
+                });
+                currentSlide = 0;
+                showSlide(0);
+            });
+        } else {
+            console.log('=== DOM ALREADY LOADED ===');
+            console.log('Slides found:', slides.length);
+            slides.forEach((slide, i) => {
+                console.log('Slide', i, ':', slide.className);
+            });
+            currentSlide = 0;
+            showSlide(0);
+        }
+    </script>
+</body>
+</html>
