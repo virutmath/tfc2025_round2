@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tổng kết năm học 2025-2026 - Lớp 4A6</title>
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --primary: #2563eb;
+      --secondary: #14b8a6;
+      --accent: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --card: rgba(15, 23, 42, 0.72);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #1d4ed8 0%, #0f172a 35%, #020617 100%);
+      color: var(--text);
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 54px 64px 90px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9));
+      animation: fade .35s ease;
+    }
+
+    .slide.active { display: flex; flex-direction: column; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      font-size: clamp(34px, 4vw, 56px);
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .subtitle {
+      color: #bfdbfe;
+      font-size: clamp(18px, 2vw, 26px);
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      color: #93c5fd;
+      font-size: clamp(30px, 3vw, 44px);
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(3px);
+    }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .lead {
+      font-size: clamp(20px, 2vw, 30px);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #e0f2fe;
+    }
+
+    .list {
+      margin-top: 10px;
+      padding-left: 22px;
+      font-size: clamp(20px, 1.8vw, 31px);
+      line-height: 1.45;
+    }
+
+    .list li { margin: 8px 0; }
+
+    .highlight {
+      color: #fde68a;
+      font-weight: 700;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: min(56vh, 440px);
+      border-radius: 16px;
+      border: 2px dashed #60a5fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #bfdbfe;
+      font-size: clamp(20px, 2vw, 30px);
+      background: rgba(37, 99, 235, 0.12);
+      padding: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .star-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .star-item {
+      background: rgba(30, 41, 59, 0.82);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: clamp(18px, 1.5vw, 26px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .star-icon {
+      font-size: 28px;
+      color: #fbbf24;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+    }
+
+    .thankyou {
+      margin-top: auto;
+      font-size: clamp(24px, 2.4vw, 38px);
+      line-height: 1.4;
+      color: #bae6fd;
+      text-align: center;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(20, 184, 166, 0.18);
+      border: 1px solid rgba(45, 212, 191, 0.5);
+    }
+
+    .progress {
+      position: fixed;
+      bottom: 26px;
+      left: 64px;
+      right: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.88);
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: rgba(30, 41, 59, 0.95); }
+
+    .dots { display: flex; gap: 8px; }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.45);
+    }
+
+    .dot.active { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.8); }
+
+    .counter { color: var(--muted); font-size: 16px; }
+
+    @media (max-width: 1024px) {
+      .slide { padding: 30px 24px 100px; overflow-y: auto; }
+      .grid-2, .star-grid { grid-template-columns: 1fr; }
+      .progress { left: 24px; right: 24px; bottom: 16px; }
+      html, body { overflow: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+    <section class="slide active">
+      <h1 class="title">TỔNG KẾT NĂM HỌC 2025-2026</h1>
+      <p class="subtitle">Ban Phụ Huynh lớp 4A6 – Trường TH Nam Từ Liêm</p>
+      <div class="card lead">
+        Trân trọng cảm ơn các bố mẹ đã đồng hành cùng cô trò lớp 4A6 trong suốt năm học.
+      </div>
+      <div class="thankyou">
+        Buổi họp phụ huynh: Tổng kết hoạt động năm học và định hướng cho năm cuối cấp.
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">1) Thu chi kỳ 2 năm học 2025-2026</h2>
+      <div class="card">
+        <div class="photo-placeholder">
+          ẢNH BẢNG THU CHI KỲ 2<br />
+          (Sẽ cập nhật khi phụ huynh tải ảnh lên)
+        </div>
+        <div class="badge">Gợi ý: thay ảnh bằng bảng thu chi chính thức trước buổi họp</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">2) Các hoạt động BPH đã thực hiện / hỗ trợ</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <ul class="list">
+            <li>Sinh nhật hàng quý cho các con</li>
+            <li>Hỗ trợ các hoạt động thi đấu bóng đá, bóng rổ</li>
+            <li>Tham gia và hỗ trợ các hoạt động văn nghệ chào mừng ngày lễ</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="lead">Tinh thần chung: <span class="highlight">đồng hành – sẻ chia – khích lệ các con</span> trong cả học tập và hoạt động tập thể.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">3) Nội dung chưa triển khai trong năm qua</h2>
+      <div class="card">
+        <p class="lead">Dự định may đồng phục cho các con trong năm vừa rồi <span class="highlight">chưa thực hiện được</span>.</p>
+        <ul class="list">
+          <li>BPH dự kiến triển khai ngay từ <span class="highlight">đầu năm học tới</span>.</li>
+          <li>Phối hợp với phụ huynh để thống nhất mẫu, chất liệu và tiến độ.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">4) Các phụ huynh tiêu biểu</h2>
+      <div class="card">
+        <p class="lead">Xin trân trọng ghi nhận những phụ huynh đã đóng góp và hỗ trợ các con rất nhiều:</p>
+        <div class="star-grid">
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Hồng Minh</div>
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Bảo Anh</div>
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Khánh Chi</div>
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Hiền Nhi</div>
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Phan Anh</div>
+          <div class="star-item"><span class="star-icon">★</span> Mẹ Hà Anh</div>
+        </div>
+      </div>
+      <div class="thankyou">BPH xin cảm ơn sự tận tâm và tinh thần trách nhiệm của các bố mẹ.</div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">5) Lời kêu gọi đồng hành năm cuối cấp</h2>
+      <div class="card">
+        <ul class="list">
+          <li>Sang năm là năm cuối cấp, lớp sẽ có nhiều hoạt động quan trọng.</li>
+          <li>Rất mong có thêm sự đồng hành của nhiều bố mẹ hơn nữa.</li>
+          <li>Cũng mong nhận được góp ý chân thành để BPH hoạt động hiệu quả hơn.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">6) Dự kiến hoạt động năm cuối cấp</h2>
+      <div class="card">
+        <ul class="list">
+          <li>May đồng phục và tổ chức dã ngoại phụ huynh – học sinh để tăng tinh thần tập thể, tạo kỷ niệm đẹp.</li>
+          <li>Chụp ảnh kỷ yếu, đi Văn Miếu Quốc Tử Giám trước kỳ thi vào lớp 6 (nếu nhà trường tổ chức chung sẽ tham gia cùng).</li>
+          <li>Tiếp sức mùa thi: chia sẻ kế hoạch ôn giai đoạn nước rút, ăn ngủ nghỉ, dinh dưỡng; tạo nhóm Zalo chia sẻ kinh nghiệm và tài liệu.</li>
+          <li>Lập danh sách các bạn thi cùng trường để tổng kết số liệu, gửi cô giáo và nhà trường; tổ chức gặp gỡ giao lưu trước giờ thi giúp các con giảm áp lực.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="section-title">7) Hình ảnh hoạt động của các con trong năm qua</h2>
+      <div class="grid grid-2">
+        <div class="photo-placeholder">ẢNH HOẠT ĐỘNG 1<br />(Cô giáo chủ nhiệm & BPH tổng hợp)</div>
+        <div class="photo-placeholder">ẢNH HOẠT ĐỘNG 2<br />(Cô giáo chủ nhiệm & BPH tổng hợp)</div>
+      </div>
+      <div class="thankyou">Xin chân thành cảm ơn cô giáo chủ nhiệm và toàn thể các bố mẹ!</div>
+    </section>
+  </div>
+
+  <div class="progress">
+    <div class="controls">
+      <button class="btn" id="prevBtn">← Trước</button>
+      <button class="btn" id="nextBtn">Tiếp →</button>
+      <button class="btn" id="fullscreenBtn">Toàn màn hình</button>
+    </div>
+    <div class="dots" id="dots"></div>
+    <div class="counter" id="counter"></div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    let current = 0;
+
+    function renderDots() {
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === current ? ' active' : '');
+        dot.setAttribute('aria-label', `Đi tới slide ${i + 1}`);
+        dot.style.border = '0';
+        dot.style.cursor = 'pointer';
+        dot.style.padding = '0';
+        dot.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(dot);
+      });
+      counter.textContent = `Slide ${current + 1}/${slides.length}`;
+    }
+
+    function go(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      renderDots();
+    }
+
+    function next() { go(current + 1); }
+    function prev() { go(current - 1); }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    fullscreenBtn.addEventListener('click', async () => {
+      try {
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+        } else {
+          await document.exitFullscreen();
+        }
+      } catch (_) {}
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+      if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+      if (e.key.toLowerCase() === 'f') { fullscreenBtn.click(); }
+      if (e.key === 'Home') go(0);
+      if (e.key === 'End') go(slides.length - 1);
+    });
+
+    go(0);
+  </script>
+</body>
+</html>
